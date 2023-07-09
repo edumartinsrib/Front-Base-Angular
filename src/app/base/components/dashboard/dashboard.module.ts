@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Input, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard.component';
@@ -12,6 +12,7 @@ import { DashboardsRoutingModule } from './dashboard-routing.module';
 import { CardComponent } from './cards/card-dashboard.component';
 import { ButtonDemoModule } from '../uikit/button/buttondemo.module';
 import { ChartsDemoModule } from '../uikit/charts/chartsdemo.module';
+import { InputDemoModule } from '../uikit/input/inputdemo.module';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { ChartsDemoModule } from '../uikit/charts/chartsdemo.module';
         ButtonModule,
         DashboardsRoutingModule,
         ButtonDemoModule,
-        ChartsDemoModule
+        ChartsDemoModule,
+        InputDemoModule
     ],
     declarations: [DashboardComponent, CardComponent]
 })

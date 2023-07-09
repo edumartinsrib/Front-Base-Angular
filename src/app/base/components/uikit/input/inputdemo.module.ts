@@ -54,6 +54,7 @@ import { SliderModule } from 'primeng/slider';
 		CheckboxModule,
 		ButtonModule
 	],
-	declarations: [InputDemoComponent]
+	declarations: [InputDemoComponent],
+    exports: [InputDemoComponent]
 })
 export class InputDemoModule { }

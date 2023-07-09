@@ -4,7 +4,8 @@ import { CountryService } from 'src/app/base/service/country.service';
 import { ComponentData } from './interfaces/input-interface';
 
 @Component({
-    templateUrl: './inputdemo.component.html'
+    templateUrl: './inputdemo.component.html',
+    selector: 'input-component'
 })
 export class InputDemoComponent implements OnInit {
     @Input() componentType!: ComponentData["componentType"];

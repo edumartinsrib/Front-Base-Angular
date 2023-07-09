@@ -1,7 +1,9 @@
 interface InputText {
-min: any;
-max: any;
-step: any;
+    floatComponentLabel?: any;
+    placeholder: any;
+    min: any;
+    max: any;
+    step: any;
     id: string;
     value: string;
     type: string;
@@ -28,7 +30,7 @@ step: any;
 }
 
 interface Textarea {
-value: any;
+    value: any;
     componentRows: number;
     componentCols: number;
     componentPlaceholder: string;
@@ -55,7 +57,7 @@ interface AutoComplete {
 }
 
 interface Calendar {
-intputId: string;
+    intputId: string;
     showIcon?: boolean | undefined;
     inputId?: string;
 }
@@ -123,14 +125,14 @@ interface Chips {
 }
 
 interface Slider {
-animate: boolean;
-orientation: string;
-range: boolean;
-valSlider: any;
-ngStyle: { [klass: string]: any; }|null|undefined;
-required: string|boolean;
-hidden: any;
-draggable: any;
+    animate: boolean;
+    orientation: string;
+    range: boolean;
+    valSlider: any;
+    ngStyle: { [klass: string]: any; } | null | undefined;
+    required: string | boolean;
+    hidden: any;
+    draggable: any;
     value: number;
     type?: string;
     readonly?: boolean;
@@ -156,7 +158,7 @@ draggable: any;
 }
 
 interface Rating {
-readonly: boolean;
+    readonly: boolean;
     cancel?: boolean;
     disabled?: boolean;
     iconCancelClass?: string;
@@ -257,8 +259,8 @@ interface Checkbox {
 }
 
 interface InputSwitch {
-falseValue: any;
-trueValue: any;
+    falseValue: any;
+    trueValue: any;
     valSwitch: Event;
     name: string;
     value: boolean;
@@ -306,14 +308,14 @@ interface Listbox {
     group?: boolean;
     listStyle?: string;
     listStyleClass?: string;
-    optionDisabled?: string | ((item: any) => boolean);
+    optionDisabled?: string | false | ((item: any) => boolean);
     optionGroupChildren?: string;
     optionGroupLabel?: string;
     metaKeySelection?: boolean;
 }
 
 interface Dropdown {
-group: any;
+    group: any;
     dropdownOptions: any[];
     selectedValue: any;
     placeholder: string;
@@ -351,6 +353,8 @@ group: any;
 }
 
 interface Multiselect {
+    classLabel: any;
+    dropdownIcon: string;
     dynamicOptions: any[];
     dynamicSelectedValues: any[];
     dynamicPlaceholder: string;

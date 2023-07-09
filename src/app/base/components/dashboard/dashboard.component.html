@@ -1,17 +1,41 @@
-    <div class="grid">
-        <div class="col-12">
-            <charts-component [chartTitle]="'Revenue'" [chartTitleSize]="1.5" [chartType]="'bar'" [chartData]="chartData" [chartOptions]="chartOptions" />
-        </div>
-        <div class="col-12 lg:col-6 xl:col-3">
-            <dashboard-card [title]="'Orders'" [value]="3000" [newCount]="24" [sinceLastVisit]="'since last visit'" [icon]="'pi pi-times'"></dashboard-card>
-        </div>
-        <div class="col-12 lg:col-6 xl:col-3">
-            <dashboard-card [title]="'Revenue'" [value]="2_100" [newCount]="52" [sinceLastVisit]="'since last week'" [icon]="'pi pi-check'"></dashboard-card>
-        </div>
-        <div class="col-12 lg:col-6 xl:col-3">
-            <dashboard-card [title]="'Customers'" [value]="28441" [newCount]="520" [sinceLastVisit]="'newly registered'" [icon]="'pi pi-check'"></dashboard-card>
-        </div>
-        <div class="col-12 lg:col-6 xl:col-3">
-        </div>
+<div class="grid">
+    <div class="col-12">
+        <charts-component
+            [chartTitle]="'Revenue'"
+            [chartTitleSize]="1.5"
+            [chartType]="'bar'"
+            [chartData]="chartData"
+            [chartOptions]="chartOptions"
+        />
     </div>
-
+    <div class="col-12 lg:col-6 xl:col-3">
+        <dashboard-card
+            [title]="'Orders'"
+            [value]="3000"
+            [newCount]="24"
+            [sinceLastVisit]="'since last visit'"
+            [icon]="'pi pi-times'"
+        ></dashboard-card>
+    </div>
+    <div class="col-12 lg:col-6 xl:col-3">
+        <dashboard-card
+            [title]="'Revenue'"
+            [value]="2_100"
+            [newCount]="52"
+            [sinceLastVisit]="'since last week'"
+            [icon]="'pi pi-check'"
+        ></dashboard-card>
+    </div>
+    <div class="col-12 lg:col-6 xl:col-3">
+        <dashboard-card
+            [title]="'Customers'"
+            [value]="28441"
+            [newCount]="520"
+            [sinceLastVisit]="'newly registered'"
+            [icon]="'pi pi-check'"
+        ></dashboard-card>
+    </div>
+    <div class="col-12 lg:col-6 xl:col-3">
+        <input-component [componentType]="'inputText'" [input]="inputOptions"></input-component>
+    </div>
+</div>

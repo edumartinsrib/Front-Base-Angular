@@ -4,11 +4,14 @@ import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { ComponentData } from '../uikit/input/interfaces/input-interface';
 
 @Component({
     templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+
+    inputOptions: ComponentData["input"];
 
     botoes!: any[];
 
@@ -28,6 +31,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.inputOptions = {
+            floatLabel: true,
+            id: "input",
+            disabled: false,
+            min: 0,
+            max: 10,
+            step: 1,
+            type: "text",
+            value: "",
+            placeholder: "Input",
+            floatComponentLabel: "Input teste"
+        }
         this.initChart();
     }
 
