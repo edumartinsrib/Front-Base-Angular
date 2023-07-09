@@ -1,202 +1,609 @@
-<div class="grid p-fluid">
-	<div class="col-12 md:col-6">
-		<div class="card">
-			<h5>InputText</h5>
-			<div class="grid formgrid">
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<input type="text" pInputText placeholder="Default">
-				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<input type="text" pInputText placeholder="Disabled" [disabled]="true"/>
-				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<input type="text" pInputText placeholder="Invalid" class="ng-dirty ng-invalid"/>
-				</div>
-			</div>
+<div class="card">
+    <ng-container [ngSwitch]="componentType">
+        <ng-container *ngSwitchCase="'inputText'">
+            <i *ngIf="input.icon"
+            [class]="leftIcon"
+            ></i>
+            <input
+                type="text"
+                pInputText
+                [id]="input!.id"
+                [type]="input!.type"
+                [readonly]="input!.readonly"
+                [disabled]="input!.disabled"
+                [min]="input!.min"
+                [max]="input!.max"
+                [step]="input!.step"
+                [style]="input!.style"
+                [pattern]="input!.pattern"
+                [align]="input!.align"
+                [autocapitalize]="input!.autocapitalize"
+                [autocomplete]="input!.autocomplete"
+                [autofocus]="input!.autofocus"
+                [contentEditable]="input!.contentEditable"
+                [defaultValue]="input!.defaultValue"
+                [checked]="input!.checked"
+                [valueAsDate]="input!.valueAsDate"
+                [valueAsNumber]="input!.valueAsNumber"
+                [dir]="input!.dir"
+                [value]="input!.value"
+                [placeholder]="componentPlaceholder"
+            />
+            <label *ngIf="input!.floatLabel" [for]="input!.id">{{
+                floatLabel.componentLabel
+            }}</label>
+        </ng-container>
 
-			<h5>Icons</h5>
-			<div class="grid formgrid">
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<span class="p-input-icon-left">
-						<i class="pi pi-user"></i>
-						<input type="text" pInputText placeholder="Username"/>
-					</span>
-				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<span class="p-input-icon-right">
-						<input type="text" pInputText placeholder="Search"/>
-						<i class="pi pi-search"></i>
-					</span>
-				</div>
-				<div class="col-12 mb-2 lg:col-4 lg:mb-0">
-					<span class="p-input-icon-left p-input-icon-right">
-						<i class="pi pi-user"></i>
-						<input type="text" pInputText placeholder="Search"/>
-						<i class="pi pi-search"></i>
-					</span>
-				</div>
-			</div>
+        <ng-container *ngSwitchCase="'textarea'">
+            <textarea
+                [rows]="textarea!.componentRows"
+                [cols]="textarea!.componentCols"
+                pInputTextarea!
+                [placeholder]="textarea!.componentPlaceholder"
+                pInputText
+                [readonly]="textarea!.readonly"
+                [disabled]="textarea!.disabled"
+                [style]="textarea!.style"
+                [autocapitalize]="textarea!.autocapitalize"
+                [autocomplete]="textarea!.autocomplete"
+                [autofocus]="textarea!.autofocus"
+                [contentEditable]="textarea!.contentEditable"
+                [defaultValue]="textarea!.defaultValue"
+                [dir]="textarea!.dir"
+                [value]="textarea!.value"
+            ></textarea>
+        </ng-container>
 
-			<h5>Float Label</h5>
-			<span class="p-float-label">
-				<input id="float-input" type="text" pInputText>
-				<label for="float-input">Username</label>
-			</span>
+        <ng-container *ngSwitchCase="'autoComplete'">
+            <p-autoComplete
+                [(ngModel)]="autoComplete!.selectedItems"
+                [suggestions]="autoComplete!.filteredItems"
+                (completeMethod)="autoComplete!.filterItem($event)"
+                [field]="autoComplete!.filterBy"
+                [dropdown]="autoComplete!.componentDropdown"
+            ></p-autoComplete>
+        </ng-container>
 
-			<h5>Textarea</h5>
-			<textarea rows="5" cols="30" placeholder="Your Message" pInputTextarea></textarea>
+        <ng-container *ngSwitchCase="'calendar'">
+            <p-calendar
+                [showIcon]="calendar!.showIcon ? calendar!.showIcon : false"
+                [inputId]="calendar!.intputId"
+            ></p-calendar>
+        </ng-container>
 
-			<h5>AutoComplete</h5>
-			<p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
-			</p-autoComplete>
+        <ng-container *ngSwitchCase="'inputNumber'">
+            <p-inputNumber
+                [mode]="inputNumber!.mode ? inputNumber!.mode : 'decimal'"
+                [currency]="inputNumber!.currency ? inputNumber!.currency : 'BRL'"
+                [locale]="inputNumber!.locale ? inputNumber!.locale : 'pt-BR'"
+                [localeMatcher]="inputNumber!.localeMatcher ? inputNumber!.localeMatcher : 'best fit'"
+                [minFractionDigits]="inputNumber!.minFractionDigits ? inputNumber!.minFractionDigits : 0"
+                [maxFractionDigits]="inputNumber!.maxFractionDigits ? inputNumber!.maxFractionDigits : 3"
+                [prefix]="inputNumber!.prefix ? inputNumber!.prefix : ''"
+                [suffix]="inputNumber!.suffix ? inputNumber!.suffix : ''"
+                [showButtons]="inputNumber!.showButtons ? inputNumber!.showButtons : false"
+                [buttonLayout]="inputNumber!.buttonLayout ? inputNumber!.buttonLayout : 'stacked'"
+                [incrementButtonClass]="inputNumber!.incrementButtonClass ? inputNumber!.incrementButtonClass : ''"
+                [decrementButtonClass]="inputNumber!.decrementButtonClass ? inputNumber!.decrementButtonClass : ''"
+                [incrementButtonIcon]="inputNumber!.incrementButtonIcon ? inputNumber!.incrementButtonIcon : 'pi pi-plus'"
+                [decrementButtonIcon]="inputNumber!.decrementButtonIcon ? inputNumber!.decrementButtonIcon : 'pi pi-minus'"
+                [allowEmpty]="inputNumber!.allowEmpty ? inputNumber!.allowEmpty : false"
+                [inputStyle]="inputNumber!.inputStyle ? inputNumber!.inputStyle : ''"
+                [disabled]="inputNumber!.disabled ? inputNumber!.disabled : false"
+                [readonly]="inputNumber!.readonly ? inputNumber!.readonly : false"
+                [maxlength]="inputNumber!.maxlength ? inputNumber!.maxlength : 999999999999999"
+                [size]="inputNumber!.size ? inputNumber!.size : 999999999999999"
+                [placeholder]="inputNumber!.placeholder ? inputNumber!.placeholder : ''"
+                [tabindex]="inputNumber!.tabindex ? inputNumber!.tabindex : '0'"
+                [inputId]="inputNumber!.inputId ? inputNumber!.inputId : ''"
+                [name]="inputNumber!.name ? inputNumber!.name : ''"
+                [autofocus]="inputNumber!.autofocus ? inputNumber!.autofocus : false"
+                [required]="inputNumber!.required ? inputNumber!.required : false"
+                [showButtons]="inputNumber!.componentShowButtons ? inputNumber!.componentShowButtons : false"
+                [min]="inputNumber!.componentMinValue ? inputNumber!.componentMinValue : 0"
+                [max]="inputNumber!.componentMaxValue ? inputNumber!.componentMaxValue : 999999999999999"
+            ></p-inputNumber>
+        </ng-container>
 
-			<h5>Calendar</h5>
-			<p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+        <ng-container *ngSwitchCase="'chips'">
+            <p-chips
+                [addOnBlur]="chips!.addOnBlur ? chips!.addOnBlur : false"
+                [addOnTab]="chips!.addOnTab ? chips!.addOnTab : false"
+                [allowDuplicate]="chips!.allowDuplicate ? chips!.allowDuplicate : false"
+                [ariaLabelledBy]="chips!.ariaLabelledBy ? chips!.ariaLabelledBy : ''"
+                [disabled]="chips!.disabled ? chips!.disabled : false"
+                [field]="chips!.field ? chips!.field : ''"
+                [inputId]="chips!.inputId ? chips!.inputId : ''"
+                [inputStyle]="chips!.inputStyle ? chips!.inputStyle : ''"
+                [inputStyleClass]="chips!.inputStyleClass ? chips!.inputStyleClass : ''"
+                [max]="chips!.max ? chips!.max : 999999999999999"
+                [ngPlural]="chips!.ngPlural ? chips!.ngPlural : ''"
+                (onAdd)="chips!.onAdd"
+                (onBlur)="chips!.onBlur"
+                (onChipClick)="chips!.onChipClick"
+                (onClear)="chips!.onClear"
+                (onRemove)="chips!.onRemove"
+                [routerLink]="chips!.routerLink"
+                [routerLinkActiveOptions]="chips!.routerLinkActiveOptions"
+                [routerLinkActive]="chips!.routerLinkActive ? chips!.routerLinkActive : ''"
+                [showClear]="chips!.showClear ? chips!.showClear : false"
+                [style]="chips!.style ? chips!.style : ''"
+                [styleClass]="chips!.styleClass ? chips!.styleClass : ''"
+                [tabindex]="chips!.tabindex ? chips!.tabindex : 0"
+                [hidden]="chips!.hidden ? chips!.hidden : false"
+                [draggable]="chips!.draggable ? chips!.draggable : false"
+                [title]="chips!.title ? chips!.title : ''"
+                [slot]="chips!.slot ? chips!.slot : ''"
+            >
+                <div slot="inside"></div>
+            </p-chips>
+        </ng-container>
 
-			<h5>InputNumber</h5>
-			<p-inputNumber mode="decimal" [showButtons]="true" [min]="0" [max]="100">
-			</p-inputNumber>
-
-			<h5>Chips</h5>
-			<p-chips></p-chips>
-		</div>
-
-		<div class="card">
+        <!-- Slider -->
+        <ng-container *ngSwitchCase="'slider'">
             <div class="grid">
                 <div class="col-12">
-                    <h5>Slider</h5>
-                    <input type="text" pInputText [(ngModel)]="valSlider" readonly/>
-                    <p-slider [(ngModel)]="valSlider"></p-slider>
-                </div>
-                <div class="col-12 md:col-6">
-                    <h5>Rating</h5>
-                    <p-rating></p-rating>
-                </div>
-                <div class="col-12 md:col-6">
-                    <h5>ColorPicker</h5>
-                    <p-colorPicker [(ngModel)]="valColor"></p-colorPicker>
-                </div>
-                <div class="col-12">
-                    <h5>Knob</h5>
-                    <p-knob [(ngModel)]="valueKnob" valueTemplate="{value}%" [step]="10" [min]="-50" [max]="50"></p-knob>
+                    <input
+                        pInputText
+                        [(ngModel)]="slider!.value"
+                        [ngModelOptions]="{ standalone: true }"
+                        [type]="slider!.type"
+                        [readonly]="slider!.readonly"
+                        [disabled]="slider!.disabled || false"
+                        [min]="slider!.min"
+                        [max]="slider!.max"
+                        [step]="slider!.step"
+                        [style]="slider!.style"
+                        [email]="slider!.email || false"
+                        [maxlength]="slider!.maxlength || 999999999999999"
+                        [minlength]="slider!.minlength || 0"
+                        [pattern]="slider!.pattern || ''"
+                        [align]="slider!.align"
+                        [autocapitalize]="slider!.autocapitalize"
+                        [autocomplete]="slider!.autocomplete"
+                        [autofocus]="slider!.autofocus"
+                        [contentEditable]="slider!.contentEditable"
+                        [defaultValue]="slider!.defaultValue"
+                        [checked]="slider!.checked"
+                        [valueAsDate]="slider!.valueAsDate"
+                        [valueAsNumber]="slider!.valueAsNumber"
+                        [dir]="slider!.dir"
+                        [value]="slider!.value"
+                    />
+
+                    <p-slider
+                        [(ngModel)]="slider!.valSlider"
+                        [animate]="slider!.animate"
+                        [disabled]="slider!.disabled || false"
+                        [email]="slider!.email || false"
+                        [max]="slider!.max || 100"
+                        [min]="slider!.min || 0"
+                        [orientation]="slider!.orientation"
+                        [ngStyle]="slider!.ngStyle"
+                        [pattern]="slider!.pattern || ''"
+                        [hidden]="slider!.hidden"
+                        [style]="slider!.style"
+                        [step]="slider!.step || 1"
+                        [required]="slider!.required"
+                        [range]="slider!.range"
+                        [draggable]="slider!.draggable"
+                    ></p-slider>
                 </div>
             </div>
-		</div>
-	</div>
+        </ng-container>
 
-	<div class="col-12 md:col-6">
-		<div class="card">
-			<h5>RadioButton</h5>
-			<div class="grid formgrid">
-				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="city" value="Chicago" [(ngModel)]="valRadio" id="city1"></p-radioButton>
-						<label for="city1">Chicago</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadio"
-									   id="city2"></p-radioButton>
-						<label for="city2">Los Angeles</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-radiobutton">
-						<p-radioButton name="city" value="New York" [(ngModel)]="valRadio" id="city3"></p-radioButton>
-						<label for="city3">New York</label>
-					</div>
-				</div>
-			</div>
+        <ng-container *ngSwitchCase="'rating'">
+            <p-rating
+                [cancel]="rating!.cancel || false"
+                [disabled]="rating!.disabled || false"
+                [iconCancelClass]="rating!.iconCancelClass || ''"
+                [iconCancelStyle]="rating!.iconCancelStyle"
+                [iconOffClass]="rating!.iconOffClass || ''"
+                [iconOffStyle]="rating!.iconOffStyle"
+                [isCustomCancelIcon]="rating!.isCustomCancelIcon || false"
+                [readonly]="rating!.readonly || false"
+                [stars]="rating!.stars || 5"
+                [hidden]="rating!.hidden"
+            ></p-rating>
+        </ng-container>
 
-			<h5>Checkbox</h5>
-			<div class="grid formgrid">
-				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
-						<label for="ny">New York</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="San Francisco" [(ngModel)]="valCheck" id="sf"></p-checkbox>
-						<label for="sf">San Francisco</label>
-					</div>
-				</div>
-				<div class="col-12 md:col-4">
-					<div class="field-checkbox">
-						<p-checkbox name="group1" value="Los Angeles" [(ngModel)]="valCheck" id="la"></p-checkbox>
-						<label for="la">Los Angeles</label>
-					</div>
-				</div>
-			</div>
+        <ng-container *ngSwitchCase="'colorPicker'">
+            <p-colorPicker
+                [(ngModel)]="colorPicker!.valColor"
+                [disabled]="colorPicker!.disabled || false"
+                [format]="colorPicker!.format || 'hex'"
+                [hideTransitionOptions]="colorPicker!.hideTransitionOptions || '0ms'"
+                [inline]="colorPicker!.inline || false"
+                [maxlength]="colorPicker!.maxlength || 999999999999999"
+                [minlength]="colorPicker!.minlength || 0"
+                [ngStyle]="colorPicker!.ngStyle"
+                [(ngModel)]="colorPicker!.ngModel"
+                [required]="colorPicker!.required || false"
+                [pattern]="colorPicker!.pattern || ''"
+                [styleClass]="colorPicker!.styleClass || ''"
+                [ngClass]="colorPicker!.ngClass"
+                [tabindex]="colorPicker!.tabindex || '0'"
+                [style]="colorPicker!.style"
+                [routerLink]="colorPicker!.routerLink"
+                [hidden]="colorPicker!.hidden"
+                [appendTo]="colorPicker!.appendTo"
+                [autoZIndex]="colorPicker!.autoZIndex || true"
+                [baseZIndex]="colorPicker!.baseZIndex || 0"
+            ></p-colorPicker>
+        </ng-container>
 
-			<h5>Input Switch</h5>
-			<p-inputSwitch [(ngModel)]="valSwitch"></p-inputSwitch>
-		</div>
+        <!-- Knob -->
+        <ng-container *ngSwitchCase="'knob'">
+            <p-knob
+                [disabled]="knob!.disabled || false"
+                [maxlength]="knob!.maxlength || 999999999999999"
+                [minlength]="knob!.minlength || 0"
+                [ngStyle]="knob!.ngStyle"
+                [(ngModel)]="knob!.ngModel"
+                [required]="knob!.required || false"
+                [pattern]="knob!.pattern || ''"
+                [styleClass]="knob!.styleClass || ''"
+                [ngClass]="knob!.ngClass"
+                [tabindex]="knob!.tabindex"
+                [style]="knob!.style"
+                [routerLink]="knob!.routerLink"
+                [hidden]="knob!.hidden"
+                [valueTemplate]="knob!.valueTemplate || ''"
+                [step]="knob!.step || 1"
+                [min]="knob!.min || 0"
+                [max]="knob!.max || 100"
+                [size]="knob!.size || 150"
+                [showValue]="knob!.showValue || true"
+                [disabled]="knob!.disabled || false"
+                [strokeWidth]="knob!.strokeWidth || 14"
+                [rangeColor]="knob!.rangeColor || 'FF0000'"
+                [valueColor]="knob!.valueColor || 'FF0000'"
+            ></p-knob>
+        </ng-container>
 
-		<div class="card">
-			<h5>Listbox</h5>
-			<p-listbox [options]="cities" [(ngModel)]="selectedList" [filter]="true"></p-listbox>
+        <ng-container *ngSwitchCase="'radioButton'">
+            <div class="field-radiobutton">
+                <p-radioButton
+                    *ngFor="let option of radioButton.options"
+                    [name]="radioButton.name"
+                    [value]="option.value"
+                    [id]="option.id"
+                    [formControlName]="radioButton.formControlName"
+                    [maxlength]="radioButton.maxlength"
+                    [minlength]="radioButton.minlength"
+                    [ngStyle]="radioButton.ngStyle"
+                    [required]="radioButton.required"
+                    [pattern]="radioButton.pattern"
+                    [styleClass]="radioButton.styleClass"
+                    [ngClass]="radioButton.ngClass"
+                    [tabindex]="radioButton.tabindex"
+                    [style]="radioButton.style"
+                    [routerLink]="radioButton.routerLink"
+                    [hidden]="radioButton.hidden"
+                    [disabled]="radioButton.disabled"
+                    [label]="option.label"
+                    [labelStyleClass]="option.labelStyleClass"
+                ></p-radioButton>
+            </div>
+        </ng-container>
 
-			<h5>Dropdown</h5>
-			<p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
+        <ng-container *ngSwitchCase="'checkbox'">
+            <div class="field-checkbox">
+                <p-checkbox
+                    *ngFor="let option of checkbox.options"
+                    [name]="checkbox.name"
+                    [value]="option.value"
+                    [(ngModel)]="checkbox.value"
+                    [id]="option.id"
+                    [maxlength]="checkbox.maxlength"
+                    [minlength]="checkbox.minlength"
+                    [ngStyle]="checkbox.ngStyle"
+                    [required]="checkbox.required"
+                    [pattern]="checkbox.pattern"
+                    [styleClass]="checkbox.styleClass"
+                    [ngClass]="checkbox.ngClass"
+                    [tabindex]="checkbox.tabindex"
+                    [style]="checkbox.style"
+                    [routerLink]="checkbox.routerLink"
+                    [hidden]="checkbox.hidden"
+                    [disabled]="checkbox.disabled"
+                    [binary]="checkbox.binary"
+                    [falseValue]="checkbox.falseValue"
+                    [label]="option.label"
+                    [checkboxIcon]="checkbox.checkboxIcon"
+                    [trueValue]="checkbox.trueValue"
+                    [labelStyleClass]="option.labelStyleClass"
+                ></p-checkbox>
+            </div>
+        </ng-container>
 
-			<h5>Multiselect</h5>
-			<p-multiSelect [options]="countries" [(ngModel)]="selectedMulti" placeholder="Select a Country" optionLabel="name" class="multiselect-custom" display="chip">
-				<ng-template let-country pTemplate="item">
-					<div class="flex align-items-center">
-						<img src="assets/demo/images/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width:21px"/>
-						<span class="ml-2">{{country.name}}</span>
-					</div>
-				</ng-template>
-			</p-multiSelect>
-		</div>
+        <ng-container *ngSwitchCase="'inputSwitch'">
+            <p-inputSwitch
+                [(ngModel)]="inputSwitch!.valSwitch"
+                [name]="inputSwitch!.name"
+                [id]="inputSwitch!.option.id"
+                [maxlength]="inputSwitch!.maxlength"
+                [minlength]="inputSwitch!.minlength"
+                [ngStyle]="inputSwitch!.ngStyle"
+                [required]="inputSwitch!.required"
+                [pattern]="inputSwitch!.pattern"
+                [styleClass]="inputSwitch!.styleClass"
+                [ngClass]="inputSwitch!.ngClass"
+                [tabindex]="inputSwitch!.tabindex"
+                [style]="inputSwitch!.style"
+                [routerLink]="inputSwitch!.routerLink"
+                [hidden]="inputSwitch!.hidden"
+                [disabled]="inputSwitch!.disabled"
+                [falseValue]="inputSwitch!.falseValue"
+                [trueValue]="inputSwitch!.trueValue"
+                [falseValue]="inputSwitch!.falseValue"
+            ></p-inputSwitch>
+        </ng-container>
 
-		<div class="card">
-			<h5>ToggleButton</h5>
-			<p-toggleButton [(ngModel)]="valToggle" onLabel="Yes" offLabel="No" [style]="{'width': '10em'}"></p-toggleButton>
+        <!-- Listbox -->
+        <ng-container *ngSwitchCase="'listbox'">
+            <div class="grid">
+                <p-listbox
+                    [options]="listbox!.options"
+                    [(ngModel)]="listbox!.selectedItems"
+                    [filter]="listbox!.filter"
+                    [disabled]="listbox!.disabled"
+                    [maxlength]="listbox!.maxlength"
+                    [minlength]="listbox!.minlength"
+                    [ngStyle]="listbox!.ngStyle"
+                    [(ngModel)]="listbox!.ngModel"
+                    [required]="listbox!.required"
+                    [pattern]="listbox!.pattern"
+                    [styleClass]="listbox!.styleClass"
+                    [ngClass]="listbox!.ngClass"
+                    [tabindex]="listbox!.tabindex"
+                    [style]="listbox!.style"
+                    [routerLink]="listbox!.routerLink"
+                    [hidden]="listbox!.hidden"
+                    [disabled]="listbox!.disabled"
+                    [multiple]="listbox!.multiple"
+                    [emptyFilterMessage]="listbox!.emptyFilterMessage"
+                    [emptyMessage]="listbox!.emptyMessage"
+                    [filterBy]="listbox!.filterBy"
+                    [filterLocale]="listbox!.filterLocale"
+                    [filterMatchMode]="listbox!.filterMatchMode"
+                    [filterPlaceHolder]="listbox!.filterPlaceHolder"
+                    [checkbox]="listbox!.checkbox"
+                    [dataKey]="listbox!.dataKey"
+                    [group]="listbox!.group"
+                    [listStyle]="listbox!.listStyle"
+                    [listStyleClass]="listbox!.listStyleClass"
+                    [optionDisabled]="listbox!.optionDisabled"
+                    [optionGroupChildren]="listbox!.optionGroupChildren"
+                    [optionGroupLabel]="listbox!.optionGroupLabel"
+                    [metaKeySelection]="listbox!.metaKeySelection"
+                ></p-listbox>
+            </div>
+        </ng-container>
 
-			<h5>SelectOneButton</h5>
-			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect1" optionLabel="name"></p-selectButton>
+        <ng-container *ngSwitchCase="'dropdown'">
+            <p-dropdown
+                [options]="dropdown!.dropdownOptions"
+                [(ngModel)]="dropdown!.selectedValue"
+                [placeholder]="dropdown!.placeholder"
+                [options]="dropdown!.options"
+                [(ngModel)]="dropdown!.selectedItems"
+                [filter]="dropdown!.filter"
+                [disabled]="dropdown!.disabled"
+                [maxlength]="dropdown!.maxlength"
+                [minlength]="dropdown!.minlength"
+                [ngStyle]="dropdown!.ngStyle"
+                [(ngModel)]="dropdown!.ngModel"
+                [required]="dropdown!.required"
+                [pattern]="dropdown!.pattern"
+                [styleClass]="dropdown!.styleClass"
+                [ngClass]="dropdown!.ngClass"
+                [tabindex]="dropdown!.tabindex"
+                [style]="dropdown!.style"
+                [routerLink]="dropdown!.routerLink"
+                [hidden]="dropdown!.hidden"
+                [disabled]="dropdown!.disabled"
+                [emptyFilterMessage]="dropdown!.emptyFilterMessage"
+                [emptyMessage]="dropdown!.emptyMessage"
+                [filterBy]="dropdown!.filterBy"
+                [filterLocale]="dropdown!.filterLocale"
+                [filterMatchMode]="dropdown!.filterMatchMode"
+                [dataKey]="dropdown!.dataKey"
+                [group]="dropdown!.group"
+                [optionDisabled]="dropdown!.optionDisabled"
+                [optionGroupChildren]="dropdown!.optionGroupChildren"
+                [optionGroupLabel]="dropdown!.optionGroupLabel"
+                [appendTo]="dropdown!.appendTo"
+                [autoDisplayFirst]="dropdown!.autoDisplayFirst"
+                [autofocus]="dropdown!.autofocus"
+                [autofocusFilter]="dropdown!.autofocusFilter"
+                [dataKey]="dropdown!.dataKey"
+                [dropdownIcon]="dropdown!.dropdownIcon"
+                [hideTransitionOptions]="dropdown!.hideTransitionOptions"
+            ></p-dropdown>
+        </ng-container>
 
-			<h5>SelectManyButton</h5>
-			<p-selectButton [options]="paymentOptions" [(ngModel)]="valSelect2" [multiple]="true" optionLabel="name"></p-selectButton>
-		</div>
-	</div>
-	
-	<div class="col-12">
-		<div class="card">
-			<h5>InputGroup</h5>
-			<div class="grid">
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-						<input type="text" pInputText placeholder="Username">
-					</div>
-				</div>
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><i class="pi pi-tags" style="line-height: 1.25;"></i></span>
-						<span class="p-inputgroup-addon"><i class="pi pi-shopping-cart" style="line-height: 1.25;"></i></span>
-						<input type="text" pInputText placeholder="Price">
-						<span class="p-inputgroup-addon">$</span>
-						<span class="p-inputgroup-addon">.00</span>
-					</div>
-				</div>
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<button type="button" pButton pRipple label="Search"></button>
-						<input type="text" pInputText placeholder="Keyword">
-					</div>
-				</div>
-				<div class="col-12 md:col-6">
-					<div class="p-inputgroup">
-						<span class="p-inputgroup-addon"><p-checkbox [(ngModel)]="valCheck2" [binary]="true"></p-checkbox></span>
-						<input type="text" pInputText placeholder="Username">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <ng-container *ngSwitchCase="'multiselect'">
+            <p-multiSelect
+                [options]="multiselect.dynamicOptions"
+                [(ngModel)]="multiselect.dynamicSelectedValues"
+                [placeholder]="multiselect.dynamicPlaceholder"
+                [optionLabel]="multiselect.dynamicLabel"
+                [display]="multiselect.dynamicDisplay"
+                [options]="multiselect.dropdownOptions"
+                [(ngModel)]="multiselect.selectedValue"
+                [placeholder]="multiselect.placeholder"
+                [options]="multiselect.options"
+                [(ngModel)]="multiselect.selectedItems"
+                [filter]="multiselect.filter"
+                [disabled]="multiselect.disabled"
+                [maxlength]="multiselect.maxlength"
+                [minlength]="multiselect.minlength"
+                [ngStyle]="multiselect.ngStyle"
+                [(ngModel)]="multiselect.ngModel"
+                [required]="multiselect.required"
+                [pattern]="multiselect.pattern"
+                [styleClass]="multiselect.styleClass"
+                [ngClass]="multiselect.ngClass"
+                [tabindex]="multiselect.tabindex"
+                [style]="multiselect.style"
+                [routerLink]="multiselect.routerLink"
+                [hidden]="multiselect.hidden"
+                [disabled]="multiselect.disabled"
+                [emptyFilterMessage]="multiselect.emptyFilterMessage"
+                [emptyMessage]="multiselect.emptyMessage"
+                [filterBy]="multiselect.filterBy"
+                [filterLocale]="multiselect.filterLocale"
+                [filterMatchMode]="multiselect.filterMatchMode"
+                [dataKey]="multiselect.dataKey"
+                [group]="multiselect.group"
+                [optionDisabled]="multiselect.optionDisabled"
+                [optionGroupChildren]="multiselect.optionGroupChildren"
+                [optionGroupLabel]="multiselect.optionGroupLabel"
+                [appendTo]="multiselect.appendTo"
+                [autofocus]="multiselect.autofocus"
+                [autofocusFilter]="multiselect.autofocusFilter"
+                [dataKey]="multiselect.dataKey"
+                [dropdownIcon]="multiselect.dropdownIcon"
+                [hideTransitionOptions]="multiselect.hideTransitionOptions"
+            >
+                <ng-template let-item pTemplate="item">
+                    <div [class]="multiselect.classTemplate">
+                        <img
+                            [src]="multiselect.templateImage"
+                            [class]="multiselect.classImage"
+                            [style]="multiselect.styleImage"
+                        />
+                        <span [class]="multiselect.classLabel">{{
+                            item.dynamicName
+                        }}</span>
+                    </div>
+                </ng-template>
+            </p-multiSelect>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'toggleButton'">
+            <p-toggleButton
+                [(ngModel)]="toggleButton.dynamicValue"
+                [onLabel]="toggleButton.dynamicOnLabel"
+                [offLabel]="toggleButton.dynamicOffLabel"
+                [style]="toggleButton.dynamicStyle"
+                [(ngModel)]="toggleButton.selectedValue"
+                [(ngModel)]="toggleButton.selectedItems"
+                [disabled]="toggleButton.disabled"
+                [maxlength]="toggleButton.maxlength"
+                [minlength]="toggleButton.minlength"
+                [ngStyle]="toggleButton.ngStyle"
+                [(ngModel)]="toggleButton.ngModel"
+                [required]="toggleButton.required"
+                [pattern]="toggleButton.pattern"
+                [styleClass]="toggleButton.styleClass"
+                [ngClass]="toggleButton.ngClass"
+                [tabindex]="toggleButton.tabindex"
+                [style]="toggleButton.style"
+                [routerLink]="toggleButton.routerLink"
+                [hidden]="toggleButton.hidden"
+                [disabled]="toggleButton.disabled"
+                [autofocus]="toggleButton.autofocus"
+            ></p-toggleButton>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'toggleButton'">
+            <p-toggleButton
+                [(ngModel)]="toggleButton.dynamicValue"
+                [onLabel]="toggleButton.dynamicOnLabel"
+                [offLabel]="toggleButton.dynamicOffLabel"
+                [style]="toggleButton.dynamicStyle"
+                [(ngModel)]="toggleButton.selectedValue"
+                [(ngModel)]="toggleButton.selectedItems"
+                [disabled]="toggleButton.disabled"
+                [maxlength]="toggleButton.maxlength"
+                [minlength]="toggleButton.minlength"
+                [ngStyle]="toggleButton.ngStyle"
+                [(ngModel)]="toggleButton.ngModel"
+                [required]="toggleButton.required"
+                [pattern]="toggleButton.pattern"
+                [styleClass]="toggleButton.styleClass"
+                [ngClass]="toggleButton.ngClass"
+                [tabindex]="toggleButton.tabindex"
+                [style]="toggleButton.style"
+                [routerLink]="toggleButton.routerLink"
+                [hidden]="toggleButton.hidden"
+                [disabled]="toggleButton.disabled"
+                [autofocus]="toggleButton.autofocus"
+            ></p-toggleButton>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'selectOneButton'">
+            <p-selectButton
+                [(ngModel)]="selectOneButton.selectedValue"
+                [options]="selectOneButton.options"
+                [(ngModel)]="selectOneButton.selectedItems"
+                [disabled]="selectOneButton.disabled"
+                [maxlength]="selectOneButton.maxlength"
+                [minlength]="selectOneButton.minlength"
+                [ngStyle]="selectOneButton.ngStyle"
+                [(ngModel)]="selectOneButton.ngModel"
+                [required]="selectOneButton.required"
+                [pattern]="selectOneButton.pattern"
+                [styleClass]="selectOneButton.styleClass"
+                [ngClass]="selectOneButton.ngClass"
+                [tabindex]="selectOneButton.tabindex"
+                [style]="selectOneButton.style"
+                [routerLink]="selectOneButton.routerLink"
+                [hidden]="selectOneButton.hidden"
+                [disabled]="selectOneButton.disabled"
+                [dataKey]="selectOneButton.dataKey"
+                [optionDisabled]="selectOneButton.optionDisabled"
+                [autofocus]="selectOneButton.autofocus"
+                [dataKey]="selectOneButton.dataKey"
+                [optionLabel]="selectOneButton.optionLabel"
+                [optionValue]="selectOneButton.optionValue"
+                [multiple]="selectOneButton.multiple"
+            ></p-selectButton>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'inputGroup'">
+            <div class="p-inputgroup">
+                <ng-container *ngFor="let item of inputGroup.beforeItems">
+                    <span
+                        class="p-inputgroup-addon"
+                        *ngIf="item.type === 'icon'"
+                    >
+                        <i [class]="item.icon"></i>
+                    </span>
+                    <button
+                        type="button"
+                        pButton
+                        pRipple
+                        *ngIf="item.type === 'button'"
+                        [label]="item.label"
+                        [icon]="item.icon"
+                    ></button>
+                </ng-container>
+                <input type="text" pInputText placeholder="Username" />
+                <ng-container *ngFor="let item of inputGroup.afterItems">
+                    <span
+                        class="p-inputgroup-addon"
+                        *ngIf="item.type === 'icon'"
+                    >
+                        <i [class]="item.icon"></i>
+                    </span>
+                    <button
+                        type="button"
+                        pButton
+                        pRipple
+                        *ngIf="item.type === 'button'"
+                        [label]="item.label"
+                        [icon]="item.icon"
+                    ></button>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <!-- Default case -->
+        <ng-container *ngSwitchDefault>
+            Tipo de componente inválido
+        </ng-container>
+    </ng-container>
 </div>

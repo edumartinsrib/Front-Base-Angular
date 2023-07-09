@@ -1,80 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { CountryService } from 'src/app/base/service/country.service';
+import { ComponentData } from './interfaces/input-interface';
 
 @Component({
     templateUrl: './inputdemo.component.html'
 })
 export class InputDemoComponent implements OnInit {
+    @Input() componentType!: ComponentData["componentType"];
 
-    countries: any[] = [];
+    @Input() input: ComponentData["input"];
 
-    filteredCountries: any[] = [];
+    @Input() textarea: ComponentData["textarea"];
 
-    selectedCountryAdvanced: any[] = [];
+    @Input() autoComplete: ComponentData["autoComplete"];
 
-    valSlider = 50;
+    @Input() calendar: ComponentData["calendar"];
 
-    valColor = '#424242';
+    @Input() inputNumber: ComponentData["inputNumber"];
 
-    valRadio: string = '';
+    @Input() chips: ComponentData["chips"];
 
-    valCheck: string[] = [];
+    @Input() slider: ComponentData["slider"];
 
-    valCheck2: boolean = false;
+    @Input() rating: ComponentData["rating"];
 
-    valSwitch: boolean = false;
+    @Input() colorPicker: ComponentData["colorPicker"];
 
-    cities: SelectItem[] = [];
+    @Input() knob: ComponentData["knob"];
 
-    selectedList: SelectItem = { value: '' };
+    @Input() radioButton: ComponentData["radioButton"];
 
-    selectedDrop: SelectItem = { value: '' };
+    @Input() checkbox: ComponentData["checkbox"];
 
-    selectedMulti: any[] = [];
+    @Input() inputSwitch: ComponentData["inputSwitch"];
 
-    valToggle = false;
+    @Input() listbox: ComponentData["listbox"];
 
-    paymentOptions: any[] = [];
+    @Input() dropdown: ComponentData["dropdown"];
 
-    valSelect1: string = "";
+    @Input() multiselect: ComponentData["multiselect"];
 
-    valSelect2: string = "";
+    @Input() toggleButton: ComponentData["toggleButton"];
 
-    valueKnob = 20;
+    @Input() selectOneButton: ComponentData["selectOneButton"];
 
-    constructor(private countryService: CountryService) { }
+    @Input() inputGroup: ComponentData["inputGroup"];
+leftIcon: any;
+componentPlaceholder: any;
+floatLabel: any;
+
+    constructor() { }
 
     ngOnInit() {
-        this.countryService.getCountries().then(countries => {
-            this.countries = countries;
-        });
-
-        this.cities = [
-            { label: 'New York', value: { id: 1, name: 'New York', code: 'NY' } },
-            { label: 'Rome', value: { id: 2, name: 'Rome', code: 'RM' } },
-            { label: 'London', value: { id: 3, name: 'London', code: 'LDN' } },
-            { label: 'Istanbul', value: { id: 4, name: 'Istanbul', code: 'IST' } },
-            { label: 'Paris', value: { id: 5, name: 'Paris', code: 'PRS' } }
-        ];
-
-        this.paymentOptions = [
-            { name: 'Option 1', value: 1 },
-            { name: 'Option 2', value: 2 },
-            { name: 'Option 3', value: 3 }
-        ];
     }
 
-    filterCountry(event: any) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (let i = 0; i < this.countries.length; i++) {
-            const country = this.countries[i];
-            if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-                filtered.push(country);
-            }
-        }
-
-        this.filteredCountries = filtered;
-    }
 }
