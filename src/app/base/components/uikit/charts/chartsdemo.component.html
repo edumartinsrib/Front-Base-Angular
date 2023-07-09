@@ -1,0 +1,26 @@
+<div class="grid p-fluid">
+    <div class="col-12 lg:col-6">
+        <div class="card">
+          <h5 [style.font-size.rem]="chartTitleSize">{{ chartTitle }}</h5>
+          <ng-container *ngIf="chartType === 'line'">
+            <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+          </ng-container>
+          <ng-container *ngIf="chartType === 'bar'">
+            <p-chart type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
+          </ng-container>
+          <ng-container *ngIf="chartType === 'pie'">
+            <p-chart type="pie" [data]="chartData" [options]="chartOptions"></p-chart>
+          </ng-container>
+          <ng-container *ngIf="chartType === 'polarArea'">
+            <p-chart type="polarArea" [data]="chartData" [options]="chartOptions"></p-chart>
+          </ng-container>
+          <ng-container *ngIf="chartType === 'doughnut'">
+            <p-chart type="doughnut" [data]="chartData" [options]="chartOptions"></p-chart>
+          </ng-container>
+          <ng-container *ngIf="chartType === 'radar'">
+            <p-chart type="radar" [data]="chartData" [options]="chartOptions"></p-chart>
+          </ng-container>
+        </div>
+      </div>
+
+</div>

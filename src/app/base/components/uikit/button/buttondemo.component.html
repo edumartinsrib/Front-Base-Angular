@@ -1,0 +1,44 @@
+<div class="grid">
+    <!-- Botões do tipo p-button -->
+    <ng-container *ngFor="let button of buttons">
+        <div *ngIf="!button.model">
+            <p-button
+                pButton
+                pRipple
+                [type]="button.type!"
+                [label]="button.label!"
+                [class]="button.class"
+                [disabled]="button.disabled!"
+                [icon]="button.icon ? button.icon : ''"
+                [iconPos]="button.iconPos ? button.iconPos : 'left'"
+                [loading]="button.loading ? button.loading : false"
+                [loadingIcon]="button.loadingIcon ? button.loadingIcon : ''"
+                [styleClass]="button.styleClass ? button.styleClass : ''"
+            >
+                <img
+                    *ngIf="button.image"
+                    [src]="button.image"
+                    style="width: 1.5rem"
+                />
+            </p-button>
+        </div>
+
+        <!-- Botões do tipo p-splitButton -->
+        <div *ngIf="button.model">
+            <p-splitButton
+                pButton
+                pRipple
+                [label]="button.label ? button.label : ''"
+                [icon]="button.icon ? button.icon : ''"
+                [model]="button.model"
+                [styleClass]="button.styleClass ? button.styleClass : ''"
+            >
+                <img
+                    *ngIf="button.image"
+                    [src]="button.image"
+                    style="width: 1.5rem"
+                />
+            </p-splitButton>
+        </div>
+    </ng-container>
+</div>

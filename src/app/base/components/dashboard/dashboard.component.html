@@ -1,0 +1,17 @@
+    <div class="grid">
+        <div class="col-12 lg:col-6 xl:col-3">
+            <button-component [buttons]="botoes"></button-component>
+            <dashboard-card [title]="'Orders'" [value]="3000" [newCount]="24" [sinceLastVisit]="'since last visit'" [icon]="'pi pi-times'"></dashboard-card>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+            <dashboard-card [title]="'Revenue'" [value]="2_100" [newCount]="52" [sinceLastVisit]="'since last week'" [icon]="'pi pi-check'"></dashboard-card>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+            <dashboard-card [title]="'Customers'" [value]="28441" [newCount]="520" [sinceLastVisit]="'newly registered'" [icon]="'pi pi-check'"></dashboard-card>
+        </div>
+        <div class="col-12 lg:col-6 xl:col-3">
+            <dashboard-card [title]="'Comments'" [value]="152" [newCount]="85" [sinceLastVisit]="'responded'"[icon]="'pi pi-check'" ></dashboard-card>
+        </div>
+        <charts-component [chartTitle]="'Revenue'" [chartTitleSize]="1.5" [chartType]="'line'" [chartOptions]="" ></charts-component>
+</div>
+
