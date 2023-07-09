@@ -23,21 +23,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     subscription!: Subscription;
 
     constructor(private productService: ProductService, public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(() => {
-            this.initChart();
-        });
         this.botoes = []
 
     }
 
     ngOnInit() {
         this.initChart();
-        this.productService.getProductsSmall().then(data => this.products = data);
-
-        this.items = [
-            { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-            { label: 'Remove', icon: 'pi pi-fw pi-minus' }
-        ];
     }
 
     initChart() {
@@ -50,20 +41,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [
                 {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
-                    borderColor: documentStyle.getPropertyValue('--bluegray-700'),
-                    tension: .4
+                    label: 'My First dataset',
+                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                    borderColor: documentStyle.getPropertyValue('--primary-500'),
+                    data: [65, 59, 80, 81, 56, 55, 40]
                 },
                 {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--green-600'),
-                    borderColor: documentStyle.getPropertyValue('--green-600'),
-                    tension: .4
+                    label: 'My Second dataset',
+                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
+                    borderColor: documentStyle.getPropertyValue('--primary-200'),
+                    data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
         };
@@ -72,17 +59,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        color: textColor
+                        fontColor: textColor
                     }
                 }
             },
             scales: {
                 x: {
                     ticks: {
-                        color: textColorSecondary
+                        color: textColorSecondary,
+                        font: {
+                            weight: 500
+                        }
                     },
                     grid: {
-                        color: surfaceBorder,
+                        display: false,
                         drawBorder: false
                     }
                 },
@@ -94,7 +84,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                         color: surfaceBorder,
                         drawBorder: false
                     }
-                }
+                },
             }
         };
     }
