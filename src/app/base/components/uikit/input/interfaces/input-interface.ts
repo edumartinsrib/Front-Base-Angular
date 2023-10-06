@@ -51,9 +51,10 @@ interface Textarea {
 interface AutoComplete {
     selectedItems: Event;
     filteredItems: any[];
-    filterItem(event: any): void;
     filterBy: string;
     componentDropdown: boolean;
+
+    filterItem(event: any): void;
 }
 
 interface Calendar {
@@ -106,11 +107,6 @@ interface Chips {
     inputStyleClass?: string;
     max?: number;
     ngPlural?: any;
-    onAdd?(event: any): void;
-    onBlur?(event: any): void;
-    onChipClick?(event: any): void;
-    onClear?(event: any): void;
-    onRemove?(event: any): void;
     routerLink?: string;
     routerLinkActiveOptions?: any;
     routerLinkActive?: string | string[];
@@ -122,6 +118,16 @@ interface Chips {
     draggable?: boolean;
     title?: string;
     slot?: string;
+
+    onAdd?(event: any): void;
+
+    onBlur?(event: any): void;
+
+    onChipClick?(event: any): void;
+
+    onClear?(event: any): void;
+
+    onRemove?(event: any): void;
 }
 
 interface Slider {

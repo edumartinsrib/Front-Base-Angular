@@ -3,17 +3,17 @@
     <ng-container *ngFor="let button of buttons">
         <div *ngIf="!button.model">
             <p-button
-                pButton
-                pRipple
-                [type]="button.type!"
-                [label]="button.label!"
                 [class]="button.class"
                 [disabled]="button.disabled!"
-                [icon]="button.icon ? button.icon : ''"
                 [iconPos]="button.iconPos ? button.iconPos : 'left'"
-                [loading]="button.loading ? button.loading : false"
+                [icon]="button.icon ? button.icon : ''"
+                [label]="button.label!"
                 [loadingIcon]="button.loadingIcon ? button.loadingIcon : ''"
+                [loading]="button.loading ? button.loading : false"
                 [styleClass]="button.styleClass ? button.styleClass : ''"
+                [type]="button.type!"
+                pButton
+                pRipple
             >
                 <img
                     *ngIf="button.image"
@@ -26,12 +26,12 @@
         <!-- Botões do tipo p-splitButton -->
         <div *ngIf="button.model">
             <p-splitButton
-                pButton
-                pRipple
-                [label]="button.label ? button.label : ''"
                 [icon]="button.icon ? button.icon : ''"
+                [label]="button.label ? button.label : ''"
                 [model]="button.model"
                 [styleClass]="button.styleClass ? button.styleClass : ''"
+                pButton
+                pRipple
             >
                 <img
                     *ngIf="button.image"

@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { Product } from '../../api/product';
-import { ProductService } from '../../service/product.service';
-import { Subscription } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
-import { ComponentData } from '../uikit/input/interfaces/input-interface';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MenuItem} from 'primeng/api';
+import {Product} from '../../api/product';
+import {ProductService} from '../../service/product.service';
+import {Subscription} from 'rxjs';
+import {LayoutService} from 'src/app/layout/service/app.layout.service';
+import {ComponentData} from '../uikit/input/interfaces/input-interface';
 
 @Component({
     templateUrl: './dashboard.component.html',

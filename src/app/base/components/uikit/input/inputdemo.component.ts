@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SelectItem } from 'primeng/api';
-import { CountryService } from 'src/app/base/service/country.service';
-import { ComponentData } from './interfaces/input-interface';
+import {Component, Input, OnInit} from '@angular/core';
+import {ComponentData} from './interfaces/input-interface';
 
 @Component({
     templateUrl: './inputdemo.component.html',
@@ -47,11 +45,12 @@ export class InputDemoComponent implements OnInit {
     @Input() selectOneButton: ComponentData["selectOneButton"];
 
     @Input() inputGroup: ComponentData["inputGroup"];
-leftIcon: any;
-componentPlaceholder: any;
-floatLabel: any;
+    leftIcon: any;
+    componentPlaceholder: any;
+    floatLabel: any;
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
     }

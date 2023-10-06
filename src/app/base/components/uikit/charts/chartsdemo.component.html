@@ -4,44 +4,44 @@
             <h5 [style.font-size.rem]="chartTitleSize">{{ chartTitle }}</h5>
             <ng-container *ngIf="chartType === 'line'">
                 <p-chart
-                    type="line"
                     [data]="chartData"
                     [options]="chartOptions"
+                    type="line"
                 ></p-chart>
             </ng-container>
             <ng-container *ngIf="chartType === 'bar'">
                 <p-chart
-                    type="bar"
                     [data]="chartData"
                     [options]="chartOptions"
+                    type="bar"
                 ></p-chart>
             </ng-container>
             <ng-container *ngIf="chartType === 'pie'">
                 <p-chart
-                    type="pie"
                     [data]="chartData"
                     [options]="chartOptions"
+                    type="pie"
                 ></p-chart>
             </ng-container>
             <ng-container *ngIf="chartType === 'polarArea'">
                 <p-chart
-                    type="polarArea"
                     [data]="chartData"
                     [options]="chartOptions"
+                    type="polarArea"
                 ></p-chart>
             </ng-container>
             <ng-container *ngIf="chartType === 'doughnut'">
                 <p-chart
-                    type="doughnut"
                     [data]="chartData"
                     [options]="chartOptions"
+                    type="doughnut"
                 ></p-chart>
             </ng-container>
             <ng-container *ngIf="chartType === 'radar'">
                 <p-chart
-                    type="radar"
                     [data]="chartData"
                     [options]="chartOptions"
+                    type="radar"
                 ></p-chart>
             </ng-container>
         </div>

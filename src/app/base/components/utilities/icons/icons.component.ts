@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { IconService } from 'src/app/base/service/icon.service';
+import {Component, OnInit} from '@angular/core';
+import {IconService} from 'src/app/base/service/icon.service';
 
 @Component({
     templateUrl: './icons.component.html',
@@ -12,7 +12,8 @@ export class IconsComponent implements OnInit {
 
     selectedIcon: any;
 
-    constructor(private iconService: IconService) { }
+    constructor(private iconService: IconService) {
+    }
 
     ngOnInit() {
         this.iconService.getIcons().subscribe(data => {
@@ -40,8 +41,7 @@ export class IconsComponent implements OnInit {
 
         if (!searchText) {
             this.filteredIcons = this.icons;
-        }
-        else {
+        } else {
             this.filteredIcons = this.icons.filter(it => {
                 return it.icon.tags[0].includes(searchText);
             });
