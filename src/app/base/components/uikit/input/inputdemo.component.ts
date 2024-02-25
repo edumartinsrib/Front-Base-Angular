@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ComponentData} from './interfaces/input-interface';
 
 @Component({
-    templateUrl: './inputdemo.component.html',
-    selector: 'input-component'
+    templateUrl: 'inputdemo.component.html',
+    selector: 'app-input'
 })
-export class InputDemoComponent implements OnInit {
+export class InputDemoComponent  {
     @Input() componentType!: ComponentData["componentType"];
 
     @Input() input: ComponentData["input"];
@@ -51,8 +51,4 @@ export class InputDemoComponent implements OnInit {
 
     constructor() {
     }
-
-    ngOnInit() {
-    }
-
 }

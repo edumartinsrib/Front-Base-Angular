@@ -37,7 +37,6 @@
         <ng-container *ngSwitchCase="'textarea'">
             <textarea
                 [autocapitalize]="textarea!.autocapitalize"
-                [autocomplete]="textarea!.autocomplete"
                 [autofocus]="textarea!.autofocus"
                 [cols]="textarea!.componentCols"
                 [contentEditable]="textarea!.contentEditable"
@@ -50,7 +49,6 @@
                 [style]="textarea!.style"
                 [value]="textarea!.value"
                 pInputText
-                pInputTextarea!
             ></textarea>
         </ng-container>
 
@@ -74,7 +72,6 @@
         <ng-container *ngSwitchCase="'inputNumber'">
             <p-inputNumber
                 [allowEmpty]="inputNumber!.allowEmpty ? inputNumber!.allowEmpty : false"
-                [autofocus]="inputNumber!.autofocus ? inputNumber!.autofocus : false"
                 [buttonLayout]="inputNumber!.buttonLayout ? inputNumber!.buttonLayout : 'stacked'"
                 [currency]="inputNumber!.currency ? inputNumber!.currency : 'BRL'"
                 [decrementButtonClass]="inputNumber!.decrementButtonClass ? inputNumber!.decrementButtonClass : ''"
@@ -98,10 +95,9 @@
                 [readonly]="inputNumber!.readonly ? inputNumber!.readonly : false"
                 [required]="inputNumber!.required ? inputNumber!.required : false"
                 [showButtons]="inputNumber!.showButtons ? inputNumber!.showButtons : false"
-                [showButtons]="inputNumber!.componentShowButtons ? inputNumber!.componentShowButtons : false"
                 [size]="inputNumber!.size ? inputNumber!.size : 999999999999999"
                 [suffix]="inputNumber!.suffix ? inputNumber!.suffix : ''"
-                [tabindex]="inputNumber!.tabindex ? inputNumber!.tabindex : '0'"
+                [tabindex]="inputNumber!.tabindex ? inputNumber!.tabindex : 0"
             ></p-inputNumber>
         </ng-container>
 
@@ -201,7 +197,6 @@
                 [iconCancelStyle]="rating!.iconCancelStyle"
                 [iconOffClass]="rating!.iconOffClass || ''"
                 [iconOffStyle]="rating!.iconOffStyle"
-                [isCustomCancelIcon]="rating!.isCustomCancelIcon || false"
                 [readonly]="rating!.readonly || false"
                 [stars]="rating!.stars || 5"
             ></p-rating>
@@ -209,7 +204,6 @@
 
         <ng-container *ngSwitchCase="'colorPicker'">
             <p-colorPicker
-                [(ngModel)]="colorPicker!.valColor"
                 [(ngModel)]="colorPicker!.ngModel"
                 [appendTo]="colorPicker!.appendTo"
                 [autoZIndex]="colorPicker!.autoZIndex || true"
@@ -237,7 +231,6 @@
             <p-knob
                 [(ngModel)]="knob!.ngModel"
                 [disabled]="knob!.disabled || false"
-                [disabled]="knob!.disabled || false"
                 [hidden]="knob!.hidden"
                 [max]="knob!.max || 100"
                 [maxlength]="knob!.maxlength || 999999999999999"
@@ -255,7 +248,7 @@
                 [strokeWidth]="knob!.strokeWidth || 14"
                 [styleClass]="knob!.styleClass || ''"
                 [style]="knob!.style"
-                [tabindex]="knob!.tabindex"
+                [tabindex]="knob!.tabindex ? knob!.tabindex : 0"
                 [valueColor]="knob!.valueColor || 'FF0000'"
                 [valueTemplate]="knob!.valueTemplate || ''"
             ></p-knob>
@@ -322,7 +315,6 @@
                 [(ngModel)]="inputSwitch!.valSwitch"
                 [disabled]="inputSwitch!.disabled || false"
                 [falseValue]="inputSwitch!.falseValue"
-                [falseValue]="inputSwitch!.falseValue"
                 [hidden]="inputSwitch!.hidden"
                 [id]="inputSwitch!.option.id"
                 [maxlength]="inputSwitch!.maxlength || 999999999999999"
@@ -344,11 +336,9 @@
         <ng-container *ngSwitchCase="'listbox'">
             <div class="grid">
                 <p-listbox
-                    [(ngModel)]="listbox!.selectedItems"
                     [(ngModel)]="listbox!.ngModel"
                     [checkbox]="listbox!.checkbox || false"
                     [dataKey]="listbox!.dataKey || ''"
-                    [disabled]="listbox!.disabled || false"
                     [disabled]="listbox!.disabled || false"
                     [emptyFilterMessage]="listbox!.emptyFilterMessage || ''"
                     [emptyMessage]="listbox!.emptyMessage || ''"
@@ -382,16 +372,11 @@
 
         <ng-container *ngSwitchCase="'dropdown'">
             <p-dropdown
-                [(ngModel)]="dropdown!.selectedValue"
-                [(ngModel)]="dropdown!.selectedItems"
                 [(ngModel)]="dropdown!.ngModel"
                 [appendTo]="dropdown!.appendTo"
-                [autoDisplayFirst]="dropdown!.autoDisplayFirst || true"
                 [autofocusFilter]="dropdown!.autofocusFilter || false"
                 [autofocus]="dropdown!.autofocus || false"
                 [dataKey]="dropdown!.dataKey || ''"
-                [dataKey]="dropdown!.dataKey || ''"
-                [disabled]="dropdown!.disabled || false"
                 [disabled]="dropdown!.disabled || false"
                 [dropdownIcon]="dropdown!.dropdownIcon || 'pi pi-chevron-down'"
                 [emptyFilterMessage]="dropdown!.emptyFilterMessage || ''"
@@ -409,7 +394,6 @@
                 [ngStyle]="dropdown!.ngStyle"
                 [optionGroupChildren]="dropdown!.optionGroupChildren || ''"
                 [optionGroupLabel]="dropdown!.optionGroupLabel || ''"
-                [options]="dropdown!.dropdownOptions"
                 [options]="dropdown!.options"
                 [pattern]="dropdown!.pattern || ''"
                 [placeholder]="dropdown!.placeholder"
@@ -423,16 +407,10 @@
 
         <ng-container *ngSwitchCase="'multiselect'">
             <p-multiSelect
-                [(ngModel)]="multiselect!.dynamicSelectedValues"
-                [(ngModel)]="multiselect!.selectedValue"
-                [(ngModel)]="multiselect!.selectedItems"
                 [(ngModel)]="multiselect!.ngModel"
                 [appendTo]="multiselect!.appendTo"
                 [autofocusFilter]="multiselect!.autofocusFilter || false"
-                [autofocus]="multiselect!.autofocus"
                 [dataKey]="multiselect!.dataKey || ''"
-                [dataKey]="multiselect!.dataKey || ''"
-                [disabled]="multiselect!.disabled || false"
                 [disabled]="multiselect!.disabled || false"
                 [display]="multiselect!.dynamicDisplay"
                 [dropdownIcon]="multiselect!.dropdownIcon || 'pi pi-chevron-down'"
@@ -444,7 +422,6 @@
                 [filter]="multiselect!.filter || false"
                 [group]="multiselect!.group || false"
                 [hidden]="multiselect!.hidden"
-                [hideTransitionOptions]="multiselect!.hideTransitionOptions || '0ms'"
                 [maxlength]="multiselect!.maxlength || 999999999999999"
                 [minlength]="multiselect!.minlength || 0"
                 [ngClass]="multiselect!.ngClass"
@@ -452,11 +429,8 @@
                 [optionGroupChildren]="multiselect!.optionGroupChildren || ''"
                 [optionGroupLabel]="multiselect!.optionGroupLabel || ''"
                 [optionLabel]="multiselect!.dynamicLabel"
-                [options]="multiselect!.dynamicOptions"
-                [options]="multiselect!.dropdownOptions"
                 [options]="multiselect!.options"
                 [pattern]="multiselect!.pattern || ''"
-                [placeholder]="multiselect!.dynamicPlaceholder"
                 [placeholder]="multiselect!.placeholder"
                 [required]="multiselect!.required || false"
                 [routerLink]="multiselect!.routerLink"
@@ -470,9 +444,9 @@
                             [class]="multiselect!.classImage"
                             [src]="multiselect!.templateImage"
                             [style]="multiselect!.styleImage"
-                        />
+                         alt=""/>
                         <span [class]="multiselect!.classLabel || ''">{{
-                            item.dynamicName
+                            item['dynamicName'] ? item['dynamicName'] : item.label
                             }}</span>
                     </div>
                 </ng-template>
@@ -481,11 +455,7 @@
 
         <ng-container *ngSwitchCase="'toggleButton'">
             <p-toggleButton
-                [(ngModel)]="toggleButton!.dynamicValue"
-                [(ngModel)]="toggleButton!.selectedItems"
                 [(ngModel)]="toggleButton!.ngModel"
-                [autofocus]="toggleButton!.autofocus"
-                [disabled]="toggleButton!.disabled || false"
                 [disabled]="toggleButton!.disabled || false"
                 [hidden]="toggleButton!.hidden"
                 [maxlength]="toggleButton!.maxlength || 999999999999999"
@@ -498,7 +468,6 @@
                 [required]="toggleButton!.required || false"
                 [routerLink]="toggleButton!.routerLink"
                 [styleClass]="toggleButton!.styleClass || ''"
-                [style]="toggleButton!.dynamicStyle"
                 [style]="toggleButton!.style"
                 [tabindex]="toggleButton!.tabindex || 0"
             ></p-toggleButton>
@@ -506,13 +475,8 @@
 
         <ng-container *ngSwitchCase="'selectOneButton'">
             <p-selectButton
-                [(ngModel)]="selectOneButton!.selectedValue"
-                [(ngModel)]="selectOneButton!.selectedItems"
                 [(ngModel)]="selectOneButton!.ngModel"
-                [autofocus]="selectOneButton!.autofocus"
                 [dataKey]="selectOneButton!.dataKey || ''"
-                [dataKey]="selectOneButton!.dataKey || ''"
-                [disabled]="selectOneButton!.disabled || false"
                 [disabled]="selectOneButton!.disabled || false"
                 [hidden]="selectOneButton!.hidden"
                 [maxlength]="selectOneButton!.maxlength || 999999999999999"

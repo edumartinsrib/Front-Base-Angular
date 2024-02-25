@@ -85,7 +85,7 @@ interface InputNumber {
     maxlength?: number;
     size?: number;
     placeholder?: string;
-    tabindex?: string;
+    tabindex?: number;
     inputId?: string;
     name?: string;
     autofocus?: boolean;
@@ -132,7 +132,7 @@ interface Chips {
 
 interface Slider {
     animate: boolean;
-    orientation: string;
+    orientation: 'horizontal' | 'vertical';
     range: boolean;
     valSlider: any;
     ngStyle: { [klass: string]: any; } | null | undefined;
@@ -179,7 +179,7 @@ interface Rating {
 interface ColorPicker {
     valColor: string;
     disabled?: boolean;
-    format?: string;
+    format?: "hex" | "rgb" | "hsb" ;
     hideTransitionOptions?: string;
     inline?: boolean;
     maxlength?: number;
@@ -307,12 +307,12 @@ interface Listbox {
     emptyMessage?: string;
     filterBy?: string;
     filterLocale?: string;
-    filterMatchMode?: string;
+    filterMatchMode?: "contains" | "startsWith" | "endsWith" | "equals" | "notEquals" | "in" | "lt" | "lte" | "gt" | "gte";
     filterPlaceHolder?: string;
     checkbox?: boolean;
     dataKey?: string;
     group?: boolean;
-    listStyle?: string;
+    listStyle?: { [p: string]: any } | null | undefined;
     listStyleClass?: string;
     optionDisabled?: string | false | ((item: any) => boolean);
     optionGroupChildren?: string;
@@ -345,7 +345,7 @@ interface Dropdown {
     emptyMessage?: string;
     filterBy?: string;
     filterLocale?: string;
-    filterMatchMode?: string;
+    filterMatchMode?: "contains" | "startsWith" | "endsWith" | "equals" | "notEquals" | "in" | "lt" | "lte" | "gt" | "gte";
     dataKey?: string;
     optionDisabled?: string | ((item: any) => boolean);
     optionGroupChildren?: string;
@@ -389,7 +389,7 @@ interface Multiselect {
     emptyMessage?: string;
     filterBy?: string;
     filterLocale?: string;
-    filterMatchMode?: string;
+    filterMatchMode?: "contains" | "startsWith" | "endsWith" | "equals" | "notEquals" | "in" | "lt" | "lte" | "gt" | "gte";
     dataKey?: string;
     group?: boolean;
     optionDisabled?: string | ((item: any) => boolean);

@@ -25,6 +25,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {SliderModule} from 'primeng/slider';
+import {RippleModule} from "primeng/ripple";
 
 @NgModule({
     imports: [
@@ -52,7 +53,8 @@ import {SliderModule} from 'primeng/slider';
         ListboxModule,
         SelectButtonModule,
         CheckboxModule,
-        ButtonModule
+        ButtonModule,
+        RippleModule
     ],
     declarations: [InputDemoComponent],
     exports: [InputDemoComponent]
