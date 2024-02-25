@@ -1,542 +1,532 @@
 <div class="card">
-    <ng-container [ngSwitch]="componentType">
-        <ng-container *ngSwitchCase="'inputText'">
-            <i *ngIf="input!.icon"
-               [class]="leftIcon"
-            ></i>
-            <input
-                [align]="input!.align"
-                [autocapitalize]="input!.autocapitalize"
-                [autocomplete]="input!.autocomplete"
-                [autofocus]="input!.autofocus"
-                [checked]="input!.checked"
-                [contentEditable]="input!.contentEditable"
-                [defaultValue]="input!.defaultValue"
-                [dir]="input!.dir"
-                [disabled]="input!.disabled"
-                [id]="input!.id"
-                [max]="input!.max"
-                [min]="input!.min"
-                [pattern]="input!.pattern"
-                [placeholder]="input!.placeholder"
-                [readonly]="input!.readonly"
-                [step]="input!.step"
-                [style]="input!.style"
-                [type]="input!.type"
-                [valueAsDate]="input!.valueAsDate"
-                [valueAsNumber]="input!.valueAsNumber"
-                [value]="input!.value"
-                pInputText
-                type="text"
+  @switch (componentType) {
+    @case ('inputText') {
+      @if (input!.icon) {
+        <i
+          [class]="leftIcon"
+        ></i>
+      }
+      <input
+        [align]="input!.align"
+        [autocapitalize]="input!.autocapitalize"
+        [autocomplete]="input!.autocomplete"
+        [autofocus]="input!.autofocus"
+        [checked]="input!.checked"
+        [contentEditable]="input!.contentEditable"
+        [defaultValue]="input!.defaultValue"
+        [dir]="input!.dir"
+        [disabled]="input!.disabled"
+        [id]="input!.id"
+        [max]="input!.max"
+        [min]="input!.min"
+        [pattern]="input!.pattern"
+        [placeholder]="input!.placeholder"
+        [readonly]="input!.readonly"
+        [step]="input!.step"
+        [style]="input!.style"
+        [type]="input!.type"
+        [valueAsDate]="input!.valueAsDate"
+        [valueAsNumber]="input!.valueAsNumber"
+        [value]="input!.value"
+        pInputText
+        type="text"
+        />
+      @if (input!.floatLabel) {
+        <label [for]="input!.id">{{
+          input!.floatComponentLabel
+        }}</label>
+      }
+    }
+    @case ('textarea') {
+      <textarea
+        [autocapitalize]="textarea!.autocapitalize"
+        [autofocus]="textarea!.autofocus"
+        [cols]="textarea!.componentCols"
+        [contentEditable]="textarea!.contentEditable"
+        [defaultValue]="textarea!.defaultValue"
+        [dir]="textarea!.dir"
+        [disabled]="textarea!.disabled"
+        [placeholder]="textarea!.componentPlaceholder"
+        [readonly]="textarea!.readonly"
+        [rows]="textarea!.componentRows"
+        [style]="textarea!.style"
+        [value]="textarea!.value"
+        pInputText
+      ></textarea>
+    }
+    @case ('autoComplete') {
+      <p-autoComplete
+        (completeMethod)="autoComplete!.filterItem($event)"
+        [(ngModel)]="autoComplete!.selectedItems"
+        [dropdown]="autoComplete!.componentDropdown"
+        [field]="autoComplete!.filterBy"
+        [suggestions]="autoComplete!.filteredItems"
+      ></p-autoComplete>
+    }
+    @case ('calendar') {
+      <p-calendar
+        [inputId]="calendar!.intputId"
+        [showIcon]="calendar!.showIcon ? calendar!.showIcon : false"
+      ></p-calendar>
+    }
+    @case ('inputNumber') {
+      <p-inputNumber
+        [allowEmpty]="inputNumber!.allowEmpty ? inputNumber!.allowEmpty : false"
+        [buttonLayout]="inputNumber!.buttonLayout ? inputNumber!.buttonLayout : 'stacked'"
+        [currency]="inputNumber!.currency ? inputNumber!.currency : 'BRL'"
+        [decrementButtonClass]="inputNumber!.decrementButtonClass ? inputNumber!.decrementButtonClass : ''"
+        [decrementButtonIcon]="inputNumber!.decrementButtonIcon ? inputNumber!.decrementButtonIcon : 'pi pi-minus'"
+        [disabled]="inputNumber!.disabled ? inputNumber!.disabled : false"
+        [incrementButtonClass]="inputNumber!.incrementButtonClass ? inputNumber!.incrementButtonClass : ''"
+        [incrementButtonIcon]="inputNumber!.incrementButtonIcon ? inputNumber!.incrementButtonIcon : 'pi pi-plus'"
+        [inputId]="inputNumber!.inputId ? inputNumber!.inputId : ''"
+        [inputStyle]="inputNumber!.inputStyle ? inputNumber!.inputStyle : ''"
+        [localeMatcher]="inputNumber!.localeMatcher ? inputNumber!.localeMatcher : 'best fit'"
+        [locale]="inputNumber!.locale ? inputNumber!.locale : 'pt-BR'"
+        [maxFractionDigits]="inputNumber!.maxFractionDigits ? inputNumber!.maxFractionDigits : 3"
+        [max]="inputNumber!.componentMaxValue ? inputNumber!.componentMaxValue : 999999999999999"
+        [maxlength]="inputNumber!.maxlength ? inputNumber!.maxlength : 999999999999999"
+        [minFractionDigits]="inputNumber!.minFractionDigits ? inputNumber!.minFractionDigits : 0"
+        [min]="inputNumber!.componentMinValue ? inputNumber!.componentMinValue : 0"
+        [mode]="inputNumber!.mode ? inputNumber!.mode : 'decimal'"
+        [name]="inputNumber!.name ? inputNumber!.name : ''"
+        [placeholder]="inputNumber!.placeholder ? inputNumber!.placeholder : ''"
+        [prefix]="inputNumber!.prefix ? inputNumber!.prefix : ''"
+        [readonly]="inputNumber!.readonly ? inputNumber!.readonly : false"
+        [required]="inputNumber!.required ? inputNumber!.required : false"
+        [showButtons]="inputNumber!.showButtons ? inputNumber!.showButtons : false"
+        [size]="inputNumber!.size ? inputNumber!.size : 999999999999999"
+        [suffix]="inputNumber!.suffix ? inputNumber!.suffix : ''"
+        [tabindex]="inputNumber!.tabindex ? inputNumber!.tabindex : 0"
+      ></p-inputNumber>
+    }
+    @case ('chips') {
+      <p-chips
+        (onAdd)="chips!.onAdd"
+        (onBlur)="chips!.onBlur"
+        (onChipClick)="chips!.onChipClick"
+        (onClear)="chips!.onClear"
+        (onRemove)="chips!.onRemove"
+        [addOnBlur]="chips!.addOnBlur ? chips!.addOnBlur : false"
+        [addOnTab]="chips!.addOnTab ? chips!.addOnTab : false"
+        [allowDuplicate]="chips!.allowDuplicate ? chips!.allowDuplicate : false"
+        [ariaLabelledBy]="chips!.ariaLabelledBy ? chips!.ariaLabelledBy : ''"
+        [disabled]="chips!.disabled ? chips!.disabled : false"
+        [draggable]="chips!.draggable ? chips!.draggable : false"
+        [field]="chips!.field ? chips!.field : ''"
+        [hidden]="chips!.hidden ? chips!.hidden : false"
+        [inputId]="chips!.inputId ? chips!.inputId : ''"
+        [inputStyleClass]="chips!.inputStyleClass ? chips!.inputStyleClass : ''"
+        [inputStyle]="chips!.inputStyle ? chips!.inputStyle : ''"
+        [max]="chips!.max ? chips!.max : 999999999999999"
+        [ngPlural]="chips!.ngPlural ? chips!.ngPlural : ''"
+        [routerLinkActiveOptions]="chips!.routerLinkActiveOptions"
+        [routerLinkActive]="chips!.routerLinkActive ? chips!.routerLinkActive : ''"
+        [routerLink]="chips!.routerLink"
+        [showClear]="chips!.showClear ? chips!.showClear : false"
+        [slot]="chips!.slot ? chips!.slot : ''"
+        [styleClass]="chips!.styleClass ? chips!.styleClass : ''"
+        [style]="chips!.style ? chips!.style : ''"
+        [tabindex]="chips!.tabindex ? chips!.tabindex : 0"
+        [title]="chips!.title ? chips!.title : ''"
+        >
+        <div slot="inside"></div>
+      </p-chips>
+    }
+    <!-- Slider -->
+    @case ('slider') {
+      <div class="grid">
+        <div class="col-12">
+          <input
+            [(ngModel)]="slider!.value"
+            [align]="slider!.align"
+            [autocapitalize]="slider!.autocapitalize"
+            [autocomplete]="slider!.autocomplete"
+            [autofocus]="slider!.autofocus"
+            [checked]="slider!.checked"
+            [contentEditable]="slider!.contentEditable"
+            [defaultValue]="slider!.defaultValue"
+            [dir]="slider!.dir"
+            [disabled]="slider!.disabled || false"
+            [email]="slider!.email || false"
+            [max]="slider!.max"
+            [maxlength]="slider!.maxlength || 999999999999999"
+            [min]="slider!.min"
+            [minlength]="slider!.minlength || 0"
+            [ngModelOptions]="{ standalone: true }"
+            [pattern]="slider!.pattern || ''"
+            [readonly]="slider!.readonly"
+            [step]="slider!.step"
+            [style]="slider!.style"
+            [type]="slider!.type"
+            [valueAsDate]="slider!.valueAsDate"
+            [valueAsNumber]="slider!.valueAsNumber"
+            [value]="slider!.value"
+            pInputText
             />
-            <label *ngIf="input!.floatLabel" [for]="input!.id">{{
-                input!.floatComponentLabel
-                }}</label>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'textarea'">
-            <textarea
-                [autocapitalize]="textarea!.autocapitalize"
-                [autofocus]="textarea!.autofocus"
-                [cols]="textarea!.componentCols"
-                [contentEditable]="textarea!.contentEditable"
-                [defaultValue]="textarea!.defaultValue"
-                [dir]="textarea!.dir"
-                [disabled]="textarea!.disabled"
-                [placeholder]="textarea!.componentPlaceholder"
-                [readonly]="textarea!.readonly"
-                [rows]="textarea!.componentRows"
-                [style]="textarea!.style"
-                [value]="textarea!.value"
-                pInputText
-            ></textarea>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'autoComplete'">
-            <p-autoComplete
-                (completeMethod)="autoComplete!.filterItem($event)"
-                [(ngModel)]="autoComplete!.selectedItems"
-                [dropdown]="autoComplete!.componentDropdown"
-                [field]="autoComplete!.filterBy"
-                [suggestions]="autoComplete!.filteredItems"
-            ></p-autoComplete>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'calendar'">
-            <p-calendar
-                [inputId]="calendar!.intputId"
-                [showIcon]="calendar!.showIcon ? calendar!.showIcon : false"
-            ></p-calendar>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'inputNumber'">
-            <p-inputNumber
-                [allowEmpty]="inputNumber!.allowEmpty ? inputNumber!.allowEmpty : false"
-                [buttonLayout]="inputNumber!.buttonLayout ? inputNumber!.buttonLayout : 'stacked'"
-                [currency]="inputNumber!.currency ? inputNumber!.currency : 'BRL'"
-                [decrementButtonClass]="inputNumber!.decrementButtonClass ? inputNumber!.decrementButtonClass : ''"
-                [decrementButtonIcon]="inputNumber!.decrementButtonIcon ? inputNumber!.decrementButtonIcon : 'pi pi-minus'"
-                [disabled]="inputNumber!.disabled ? inputNumber!.disabled : false"
-                [incrementButtonClass]="inputNumber!.incrementButtonClass ? inputNumber!.incrementButtonClass : ''"
-                [incrementButtonIcon]="inputNumber!.incrementButtonIcon ? inputNumber!.incrementButtonIcon : 'pi pi-plus'"
-                [inputId]="inputNumber!.inputId ? inputNumber!.inputId : ''"
-                [inputStyle]="inputNumber!.inputStyle ? inputNumber!.inputStyle : ''"
-                [localeMatcher]="inputNumber!.localeMatcher ? inputNumber!.localeMatcher : 'best fit'"
-                [locale]="inputNumber!.locale ? inputNumber!.locale : 'pt-BR'"
-                [maxFractionDigits]="inputNumber!.maxFractionDigits ? inputNumber!.maxFractionDigits : 3"
-                [max]="inputNumber!.componentMaxValue ? inputNumber!.componentMaxValue : 999999999999999"
-                [maxlength]="inputNumber!.maxlength ? inputNumber!.maxlength : 999999999999999"
-                [minFractionDigits]="inputNumber!.minFractionDigits ? inputNumber!.minFractionDigits : 0"
-                [min]="inputNumber!.componentMinValue ? inputNumber!.componentMinValue : 0"
-                [mode]="inputNumber!.mode ? inputNumber!.mode : 'decimal'"
-                [name]="inputNumber!.name ? inputNumber!.name : ''"
-                [placeholder]="inputNumber!.placeholder ? inputNumber!.placeholder : ''"
-                [prefix]="inputNumber!.prefix ? inputNumber!.prefix : ''"
-                [readonly]="inputNumber!.readonly ? inputNumber!.readonly : false"
-                [required]="inputNumber!.required ? inputNumber!.required : false"
-                [showButtons]="inputNumber!.showButtons ? inputNumber!.showButtons : false"
-                [size]="inputNumber!.size ? inputNumber!.size : 999999999999999"
-                [suffix]="inputNumber!.suffix ? inputNumber!.suffix : ''"
-                [tabindex]="inputNumber!.tabindex ? inputNumber!.tabindex : 0"
-            ></p-inputNumber>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'chips'">
-            <p-chips
-                (onAdd)="chips!.onAdd"
-                (onBlur)="chips!.onBlur"
-                (onChipClick)="chips!.onChipClick"
-                (onClear)="chips!.onClear"
-                (onRemove)="chips!.onRemove"
-                [addOnBlur]="chips!.addOnBlur ? chips!.addOnBlur : false"
-                [addOnTab]="chips!.addOnTab ? chips!.addOnTab : false"
-                [allowDuplicate]="chips!.allowDuplicate ? chips!.allowDuplicate : false"
-                [ariaLabelledBy]="chips!.ariaLabelledBy ? chips!.ariaLabelledBy : ''"
-                [disabled]="chips!.disabled ? chips!.disabled : false"
-                [draggable]="chips!.draggable ? chips!.draggable : false"
-                [field]="chips!.field ? chips!.field : ''"
-                [hidden]="chips!.hidden ? chips!.hidden : false"
-                [inputId]="chips!.inputId ? chips!.inputId : ''"
-                [inputStyleClass]="chips!.inputStyleClass ? chips!.inputStyleClass : ''"
-                [inputStyle]="chips!.inputStyle ? chips!.inputStyle : ''"
-                [max]="chips!.max ? chips!.max : 999999999999999"
-                [ngPlural]="chips!.ngPlural ? chips!.ngPlural : ''"
-                [routerLinkActiveOptions]="chips!.routerLinkActiveOptions"
-                [routerLinkActive]="chips!.routerLinkActive ? chips!.routerLinkActive : ''"
-                [routerLink]="chips!.routerLink"
-                [showClear]="chips!.showClear ? chips!.showClear : false"
-                [slot]="chips!.slot ? chips!.slot : ''"
-                [styleClass]="chips!.styleClass ? chips!.styleClass : ''"
-                [style]="chips!.style ? chips!.style : ''"
-                [tabindex]="chips!.tabindex ? chips!.tabindex : 0"
-                [title]="chips!.title ? chips!.title : ''"
-            >
-                <div slot="inside"></div>
-            </p-chips>
-        </ng-container>
-
-        <!-- Slider -->
-        <ng-container *ngSwitchCase="'slider'">
-            <div class="grid">
-                <div class="col-12">
-                    <input
-                        [(ngModel)]="slider!.value"
-                        [align]="slider!.align"
-                        [autocapitalize]="slider!.autocapitalize"
-                        [autocomplete]="slider!.autocomplete"
-                        [autofocus]="slider!.autofocus"
-                        [checked]="slider!.checked"
-                        [contentEditable]="slider!.contentEditable"
-                        [defaultValue]="slider!.defaultValue"
-                        [dir]="slider!.dir"
-                        [disabled]="slider!.disabled || false"
-                        [email]="slider!.email || false"
-                        [max]="slider!.max"
-                        [maxlength]="slider!.maxlength || 999999999999999"
-                        [min]="slider!.min"
-                        [minlength]="slider!.minlength || 0"
-                        [ngModelOptions]="{ standalone: true }"
-                        [pattern]="slider!.pattern || ''"
-                        [readonly]="slider!.readonly"
-                        [step]="slider!.step"
-                        [style]="slider!.style"
-                        [type]="slider!.type"
-                        [valueAsDate]="slider!.valueAsDate"
-                        [valueAsNumber]="slider!.valueAsNumber"
-                        [value]="slider!.value"
-                        pInputText
-                    />
-
-                    <p-slider
-                        [(ngModel)]="slider!.valSlider"
-                        [animate]="slider!.animate"
-                        [disabled]="slider!.disabled || false"
-                        [draggable]="slider!.draggable"
-                        [email]="slider!.email || false"
-                        [hidden]="slider!.hidden"
-                        [max]="slider!.max || 100"
-                        [min]="slider!.min || 0"
-                        [ngStyle]="slider!.ngStyle"
-                        [orientation]="slider!.orientation"
-                        [pattern]="slider!.pattern || ''"
-                        [range]="slider!.range"
-                        [required]="slider!.required"
-                        [step]="slider!.step || 1"
-                        [style]="slider!.style"
-                    ></p-slider>
-                </div>
-            </div>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'rating'">
-            <p-rating
-                [cancel]="rating!.cancel || false"
-                [disabled]="rating!.disabled || false"
-                [hidden]="rating!.hidden"
-                [iconCancelClass]="rating!.iconCancelClass || ''"
-                [iconCancelStyle]="rating!.iconCancelStyle"
-                [iconOffClass]="rating!.iconOffClass || ''"
-                [iconOffStyle]="rating!.iconOffStyle"
-                [readonly]="rating!.readonly || false"
-                [stars]="rating!.stars || 5"
-            ></p-rating>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'colorPicker'">
-            <p-colorPicker
-                [(ngModel)]="colorPicker!.ngModel"
-                [appendTo]="colorPicker!.appendTo"
-                [autoZIndex]="colorPicker!.autoZIndex || true"
-                [baseZIndex]="colorPicker!.baseZIndex || 0"
-                [disabled]="colorPicker!.disabled || false"
-                [format]="colorPicker!.format || 'hex'"
-                [hidden]="colorPicker!.hidden"
-                [hideTransitionOptions]="colorPicker!.hideTransitionOptions || '0ms'"
-                [inline]="colorPicker!.inline || false"
-                [maxlength]="colorPicker!.maxlength || 999999999999999"
-                [minlength]="colorPicker!.minlength || 0"
-                [ngClass]="colorPicker!.ngClass"
-                [ngStyle]="colorPicker!.ngStyle"
-                [pattern]="colorPicker!.pattern || ''"
-                [required]="colorPicker!.required || false"
-                [routerLink]="colorPicker!.routerLink"
-                [styleClass]="colorPicker!.styleClass || ''"
-                [style]="colorPicker!.style"
-                [tabindex]="colorPicker!.tabindex || '0'"
-            ></p-colorPicker>
-        </ng-container>
-
-        <!-- Knob -->
-        <ng-container *ngSwitchCase="'knob'">
-            <p-knob
-                [(ngModel)]="knob!.ngModel"
-                [disabled]="knob!.disabled || false"
-                [hidden]="knob!.hidden"
-                [max]="knob!.max || 100"
-                [maxlength]="knob!.maxlength || 999999999999999"
-                [min]="knob!.min || 0"
-                [minlength]="knob!.minlength || 0"
-                [ngClass]="knob!.ngClass"
-                [ngStyle]="knob!.ngStyle"
-                [pattern]="knob!.pattern || ''"
-                [rangeColor]="knob!.rangeColor || 'FF0000'"
-                [required]="knob!.required || false"
-                [routerLink]="knob!.routerLink"
-                [showValue]="knob!.showValue || true"
-                [size]="knob!.size || 150"
-                [step]="knob!.step || 1"
-                [strokeWidth]="knob!.strokeWidth || 14"
-                [styleClass]="knob!.styleClass || ''"
-                [style]="knob!.style"
-                [tabindex]="knob!.tabindex ? knob!.tabindex : 0"
-                [valueColor]="knob!.valueColor || 'FF0000'"
-                [valueTemplate]="knob!.valueTemplate || ''"
-            ></p-knob>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'radioButton'">
-            <div class="field-radiobutton">
-                <p-radioButton
-                    *ngFor="let option of radioButton!.options"
-                    [disabled]="radioButton!.disabled || false"
-                    [formControlName]="radioButton!.formControlName || ''"
-                    [hidden]="radioButton!.hidden"
-                    [id]="option.id"
-                    [labelStyleClass]="option.labelStyleClass || ''"
-                    [label]="option.label"
-                    [maxlength]="radioButton!.maxlength || 999999999999999"
-                    [minlength]="radioButton!.minlength || 0"
-                    [name]="radioButton!.name"
-                    [ngClass]="radioButton!.ngClass"
-                    [ngStyle]="radioButton!.ngStyle"
-                    [pattern]="radioButton!.pattern || ''"
-                    [required]="radioButton!.required || false"
-                    [routerLink]="radioButton!.routerLink"
-                    [styleClass]="radioButton!.styleClass || ''"
-                    [style]="radioButton!.style || ''"
-                    [tabindex]="radioButton!.tabindex || 0"
-                    [value]="option.value"
-                ></p-radioButton>
-            </div>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'checkbox'">
-            <div class="field-checkbox">
-                <p-checkbox
-                    *ngFor="let option of checkbox!.options"
-                    [(ngModel)]="checkbox!.value"
-                    [binary]="checkbox!.binary || false"
-                    [checkboxIcon]="checkbox!.checkboxIcon || 'pi pi-check'"
-                    [disabled]="checkbox!.disabled || false"
-                    [falseValue]="checkbox!.falseValue"
-                    [hidden]="checkbox!.hidden"
-                    [id]="option.id"
-                    [labelStyleClass]="option.labelStyleClass || ''"
-                    [label]="option.label"
-                    [maxlength]="checkbox!.maxlength || 999999999999999"
-                    [minlength]="checkbox!.minlength || 0"
-                    [name]="checkbox!.name"
-                    [ngClass]="checkbox!.ngClass"
-                    [ngStyle]="checkbox!.ngStyle"
-                    [pattern]="checkbox!.pattern || ''"
-                    [required]="checkbox!.required || false"
-                    [routerLink]="checkbox!.routerLink"
-                    [styleClass]="checkbox!.styleClass || ''"
-                    [style]="checkbox!.style"
-                    [tabindex]="checkbox!.tabindex || 0"
-                    [trueValue]="checkbox!.trueValue"
-                    [value]="option.value"
-                ></p-checkbox>
-            </div>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'inputSwitch'">
-            <p-inputSwitch
-                [(ngModel)]="inputSwitch!.valSwitch"
-                [disabled]="inputSwitch!.disabled || false"
-                [falseValue]="inputSwitch!.falseValue"
-                [hidden]="inputSwitch!.hidden"
-                [id]="inputSwitch!.option.id"
-                [maxlength]="inputSwitch!.maxlength || 999999999999999"
-                [minlength]="inputSwitch!.minlength || 0"
-                [name]="inputSwitch!.name"
-                [ngClass]="inputSwitch!.ngClass"
-                [ngStyle]="inputSwitch!.ngStyle"
-                [pattern]="inputSwitch!.pattern || ''"
-                [required]="inputSwitch!.required || false"
-                [routerLink]="inputSwitch!.routerLink"
-                [styleClass]="inputSwitch!.styleClass || ''"
-                [style]="inputSwitch!.style"
-                [tabindex]="inputSwitch!.tabindex || 0"
-                [trueValue]="inputSwitch!.trueValue"
-            ></p-inputSwitch>
-        </ng-container>
-
-        <!-- Listbox -->
-        <ng-container *ngSwitchCase="'listbox'">
-            <div class="grid">
-                <p-listbox
-                    [(ngModel)]="listbox!.ngModel"
-                    [checkbox]="listbox!.checkbox || false"
-                    [dataKey]="listbox!.dataKey || ''"
-                    [disabled]="listbox!.disabled || false"
-                    [emptyFilterMessage]="listbox!.emptyFilterMessage || ''"
-                    [emptyMessage]="listbox!.emptyMessage || ''"
-                    [filterBy]="listbox!.filterBy || ''"
-                    [filterLocale]="listbox!.filterLocale || ''"
-                    [filterMatchMode]="listbox!.filterMatchMode || 'contains'"
-                    [filterPlaceHolder]="listbox!.filterPlaceHolder || ''"
-                    [filter]="listbox!.filter || false"
-                    [group]="listbox!.group || false"
-                    [hidden]="listbox!.hidden"
-                    [listStyleClass]="listbox!.listStyleClass || ''"
-                    [listStyle]="listbox!.listStyle"
-                    [maxlength]="listbox!.maxlength || 999999999999999"
-                    [metaKeySelection]="listbox!.metaKeySelection || true"
-                    [minlength]="listbox!.minlength || 0"
-                    [multiple]="listbox!.multiple || false"
-                    [ngClass]="listbox!.ngClass"
-                    [ngStyle]="listbox!.ngStyle"
-                    [optionGroupChildren]="listbox!.optionGroupChildren || ''"
-                    [optionGroupLabel]="listbox!.optionGroupLabel || ''"
-                    [options]="listbox!.options"
-                    [pattern]="listbox!.pattern || ''"
-                    [required]="listbox!.required || false"
-                    [routerLink]="listbox!.routerLink"
-                    [styleClass]="listbox!.styleClass || ''"
-                    [style]="listbox!.style"
-                    [tabindex]="listbox!.tabindex"
-                ></p-listbox>
-            </div>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'dropdown'">
-            <p-dropdown
-                [(ngModel)]="dropdown!.ngModel"
-                [appendTo]="dropdown!.appendTo"
-                [autofocusFilter]="dropdown!.autofocusFilter || false"
-                [autofocus]="dropdown!.autofocus || false"
-                [dataKey]="dropdown!.dataKey || ''"
-                [disabled]="dropdown!.disabled || false"
-                [dropdownIcon]="dropdown!.dropdownIcon || 'pi pi-chevron-down'"
-                [emptyFilterMessage]="dropdown!.emptyFilterMessage || ''"
-                [emptyMessage]="dropdown!.emptyMessage || ''"
-                [filterBy]="dropdown!.filterBy || ''"
-                [filterLocale]="dropdown!.filterLocale || ''"
-                [filterMatchMode]="dropdown!.filterMatchMode || 'contains'"
-                [filter]="dropdown!.filter || false"
-                [group]="dropdown!.group"
-                [hidden]="dropdown!.hidden"
-                [hideTransitionOptions]="dropdown!.hideTransitionOptions || '0ms'"
-                [maxlength]="dropdown!.maxlength || 999999999999999"
-                [minlength]="dropdown!.minlength || 0"
-                [ngClass]="dropdown!.ngClass"
-                [ngStyle]="dropdown!.ngStyle"
-                [optionGroupChildren]="dropdown!.optionGroupChildren || ''"
-                [optionGroupLabel]="dropdown!.optionGroupLabel || ''"
-                [options]="dropdown!.options"
-                [pattern]="dropdown!.pattern || ''"
-                [placeholder]="dropdown!.placeholder"
-                [required]="dropdown!.required || false"
-                [routerLink]="dropdown!.routerLink"
-                [styleClass]="dropdown!.styleClass || ''"
-                [style]="dropdown!.style"
-                [tabindex]="dropdown!.tabindex || 0"
-            ></p-dropdown>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'multiselect'">
-            <p-multiSelect
-                [(ngModel)]="multiselect!.ngModel"
-                [appendTo]="multiselect!.appendTo"
-                [autofocusFilter]="multiselect!.autofocusFilter || false"
-                [dataKey]="multiselect!.dataKey || ''"
-                [disabled]="multiselect!.disabled || false"
-                [display]="multiselect!.dynamicDisplay"
-                [dropdownIcon]="multiselect!.dropdownIcon || 'pi pi-chevron-down'"
-                [emptyFilterMessage]="multiselect!.emptyFilterMessage || ''"
-                [emptyMessage]="multiselect!.emptyMessage || ''"
-                [filterBy]="multiselect!.filterBy || ''"
-                [filterLocale]="multiselect!.filterLocale || ''"
-                [filterMatchMode]="multiselect!.filterMatchMode || 'contains'"
-                [filter]="multiselect!.filter || false"
-                [group]="multiselect!.group || false"
-                [hidden]="multiselect!.hidden"
-                [maxlength]="multiselect!.maxlength || 999999999999999"
-                [minlength]="multiselect!.minlength || 0"
-                [ngClass]="multiselect!.ngClass"
-                [ngStyle]="multiselect!.ngStyle"
-                [optionGroupChildren]="multiselect!.optionGroupChildren || ''"
-                [optionGroupLabel]="multiselect!.optionGroupLabel || ''"
-                [optionLabel]="multiselect!.dynamicLabel"
-                [options]="multiselect!.options"
-                [pattern]="multiselect!.pattern || ''"
-                [placeholder]="multiselect!.placeholder"
-                [required]="multiselect!.required || false"
-                [routerLink]="multiselect!.routerLink"
-                [styleClass]="multiselect!.styleClass || ''"
-                [style]="multiselect!.style"
-                [tabindex]="multiselect!.tabindex || 0"
-            >
-                <ng-template let-item pTemplate="item">
-                    <div [class]="multiselect!.classTemplate">
-                        <img
-                            [class]="multiselect!.classImage"
-                            [src]="multiselect!.templateImage"
-                            [style]="multiselect!.styleImage"
-                         alt=""/>
-                        <span [class]="multiselect!.classLabel || ''">{{
-                            item['dynamicName'] ? item['dynamicName'] : item.label
-                            }}</span>
-                    </div>
-                </ng-template>
-            </p-multiSelect>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'toggleButton'">
-            <p-toggleButton
-                [(ngModel)]="toggleButton!.ngModel"
-                [disabled]="toggleButton!.disabled || false"
-                [hidden]="toggleButton!.hidden"
-                [maxlength]="toggleButton!.maxlength || 999999999999999"
-                [minlength]="toggleButton!.minlength || 0"
-                [ngClass]="toggleButton!.ngClass"
-                [ngStyle]="toggleButton!.ngStyle"
-                [offLabel]="toggleButton!.dynamicOffLabel"
-                [onLabel]="toggleButton!.dynamicOnLabel"
-                [pattern]="toggleButton!.pattern || ''"
-                [required]="toggleButton!.required || false"
-                [routerLink]="toggleButton!.routerLink"
-                [styleClass]="toggleButton!.styleClass || ''"
-                [style]="toggleButton!.style"
-                [tabindex]="toggleButton!.tabindex || 0"
-            ></p-toggleButton>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'selectOneButton'">
-            <p-selectButton
-                [(ngModel)]="selectOneButton!.ngModel"
-                [dataKey]="selectOneButton!.dataKey || ''"
-                [disabled]="selectOneButton!.disabled || false"
-                [hidden]="selectOneButton!.hidden"
-                [maxlength]="selectOneButton!.maxlength || 999999999999999"
-                [minlength]="selectOneButton!.minlength || 0"
-                [multiple]="selectOneButton!.multiple || false"
-                [ngClass]="selectOneButton!.ngClass"
-                [ngStyle]="selectOneButton!.ngStyle"
-                [optionLabel]="selectOneButton!.optionLabel || ''"
-                [optionValue]="selectOneButton!.optionValue || ''"
-                [options]="selectOneButton!.options"
-                [pattern]="selectOneButton!.pattern || ''"
-                [required]="selectOneButton!.required || false"
-                [routerLink]="selectOneButton!.routerLink"
-                [styleClass]="selectOneButton!.styleClass || ''"
-                [style]="selectOneButton!.style"
-                [tabindex]="selectOneButton!.tabindex || 0"
-            ></p-selectButton>
-        </ng-container>
-
-        <ng-container *ngSwitchCase="'inputGroup'">
-            <div class="p-inputgroup">
-                <ng-container *ngFor="let item of inputGroup!.beforeItems">
-                    <span
-                        *ngIf="item.type === 'icon'"
-                        class="p-inputgroup-addon"
-                    >
-                        <i [class]="item.icon"></i>
-                    </span>
-                    <button
-                        *ngIf="item.type === 'button'"
-                        [icon]="item.icon || ''"
-                        [label]="item.label || ''"
-                        pButton
-                        pRipple
-                        type="button"
-                    ></button>
-                </ng-container>
-                <input pInputText placeholder="Username" type="text"/>
-                <ng-container *ngFor="let item of inputGroup!.afterItems">
-                    <span
-                        *ngIf="item.type === 'icon'"
-                        class="p-inputgroup-addon"
-                    >
-                        <i [class]="item.icon"></i>
-                    </span>
-                    <button
-                        *ngIf="item.type === 'button'"
-                        [icon]="item.icon || ''"
-                        [label]="item.label || ''"
-                        pButton
-                        pRipple
-                        type="button"
-                    ></button>
-                </ng-container>
-            </div>
-        </ng-container>
-
-        <!-- Default case -->
-        <ng-container *ngSwitchDefault>
-            Tipo de componente inválido
-        </ng-container>
-    </ng-container>
+          <p-slider
+            [(ngModel)]="slider!.valSlider"
+            [animate]="slider!.animate"
+            [disabled]="slider!.disabled || false"
+            [draggable]="slider!.draggable"
+            [email]="slider!.email || false"
+            [hidden]="slider!.hidden"
+            [max]="slider!.max || 100"
+            [min]="slider!.min || 0"
+            [ngStyle]="slider!.ngStyle"
+            [orientation]="slider!.orientation"
+            [pattern]="slider!.pattern || ''"
+            [range]="slider!.range"
+            [required]="slider!.required"
+            [step]="slider!.step || 1"
+            [style]="slider!.style"
+          ></p-slider>
+        </div>
+      </div>
+    }
+    @case ('rating') {
+      <p-rating
+        [cancel]="rating!.cancel || false"
+        [disabled]="rating!.disabled || false"
+        [hidden]="rating!.hidden"
+        [iconCancelClass]="rating!.iconCancelClass || ''"
+        [iconCancelStyle]="rating!.iconCancelStyle"
+        [iconOffClass]="rating!.iconOffClass || ''"
+        [iconOffStyle]="rating!.iconOffStyle"
+        [readonly]="rating!.readonly || false"
+        [stars]="rating!.stars || 5"
+      ></p-rating>
+    }
+    @case ('colorPicker') {
+      <p-colorPicker
+        [(ngModel)]="colorPicker!.ngModel"
+        [appendTo]="colorPicker!.appendTo"
+        [autoZIndex]="colorPicker!.autoZIndex || true"
+        [baseZIndex]="colorPicker!.baseZIndex || 0"
+        [disabled]="colorPicker!.disabled || false"
+        [format]="colorPicker!.format || 'hex'"
+        [hidden]="colorPicker!.hidden"
+        [hideTransitionOptions]="colorPicker!.hideTransitionOptions || '0ms'"
+        [inline]="colorPicker!.inline || false"
+        [maxlength]="colorPicker!.maxlength || 999999999999999"
+        [minlength]="colorPicker!.minlength || 0"
+        [ngClass]="colorPicker!.ngClass"
+        [ngStyle]="colorPicker!.ngStyle"
+        [pattern]="colorPicker!.pattern || ''"
+        [required]="colorPicker!.required || false"
+        [routerLink]="colorPicker!.routerLink"
+        [styleClass]="colorPicker!.styleClass || ''"
+        [style]="colorPicker!.style"
+        [tabindex]="colorPicker!.tabindex || '0'"
+      ></p-colorPicker>
+    }
+    <!-- Knob -->
+    @case ('knob') {
+      <p-knob
+        [(ngModel)]="knob!.ngModel"
+        [disabled]="knob!.disabled || false"
+        [hidden]="knob!.hidden"
+        [max]="knob!.max || 100"
+        [maxlength]="knob!.maxlength || 999999999999999"
+        [min]="knob!.min || 0"
+        [minlength]="knob!.minlength || 0"
+        [ngClass]="knob!.ngClass"
+        [ngStyle]="knob!.ngStyle"
+        [pattern]="knob!.pattern || ''"
+        [rangeColor]="knob!.rangeColor || 'FF0000'"
+        [required]="knob!.required || false"
+        [routerLink]="knob!.routerLink"
+        [showValue]="knob!.showValue || true"
+        [size]="knob!.size || 150"
+        [step]="knob!.step || 1"
+        [strokeWidth]="knob!.strokeWidth || 14"
+        [styleClass]="knob!.styleClass || ''"
+        [style]="knob!.style"
+        [tabindex]="knob!.tabindex ? knob!.tabindex : 0"
+        [valueColor]="knob!.valueColor || 'FF0000'"
+        [valueTemplate]="knob!.valueTemplate || ''"
+      ></p-knob>
+    }
+    @case ('radioButton') {
+      <div class="field-radiobutton">
+        @for (option of radioButton!.options; track option) {
+          <p-radioButton
+            [disabled]="radioButton!.disabled || false"
+            [formControlName]="radioButton!.formControlName || ''"
+            [hidden]="radioButton!.hidden"
+            [id]="option.id"
+            [labelStyleClass]="option.labelStyleClass || ''"
+            [label]="option.label"
+            [maxlength]="radioButton!.maxlength || 999999999999999"
+            [minlength]="radioButton!.minlength || 0"
+            [name]="radioButton!.name"
+            [ngClass]="radioButton!.ngClass"
+            [ngStyle]="radioButton!.ngStyle"
+            [pattern]="radioButton!.pattern || ''"
+            [required]="radioButton!.required || false"
+            [routerLink]="radioButton!.routerLink"
+            [styleClass]="radioButton!.styleClass || ''"
+            [style]="radioButton!.style || ''"
+            [tabindex]="radioButton!.tabindex || 0"
+            [value]="option.value"
+          ></p-radioButton>
+        }
+      </div>
+    }
+    @case ('checkbox') {
+      <div class="field-checkbox">
+        @for (option of checkbox!.options; track option) {
+          <p-checkbox
+            [(ngModel)]="checkbox!.value"
+            [binary]="checkbox!.binary || false"
+            [checkboxIcon]="checkbox!.checkboxIcon || 'pi pi-check'"
+            [disabled]="checkbox!.disabled || false"
+            [falseValue]="checkbox!.falseValue"
+            [hidden]="checkbox!.hidden"
+            [id]="option.id"
+            [labelStyleClass]="option.labelStyleClass || ''"
+            [label]="option.label"
+            [maxlength]="checkbox!.maxlength || 999999999999999"
+            [minlength]="checkbox!.minlength || 0"
+            [name]="checkbox!.name"
+            [ngClass]="checkbox!.ngClass"
+            [ngStyle]="checkbox!.ngStyle"
+            [pattern]="checkbox!.pattern || ''"
+            [required]="checkbox!.required || false"
+            [routerLink]="checkbox!.routerLink"
+            [styleClass]="checkbox!.styleClass || ''"
+            [style]="checkbox!.style"
+            [tabindex]="checkbox!.tabindex || 0"
+            [trueValue]="checkbox!.trueValue"
+            [value]="option.value"
+          ></p-checkbox>
+        }
+      </div>
+    }
+    @case ('inputSwitch') {
+      <p-inputSwitch
+        [(ngModel)]="inputSwitch!.valSwitch"
+        [disabled]="inputSwitch!.disabled || false"
+        [falseValue]="inputSwitch!.falseValue"
+        [hidden]="inputSwitch!.hidden"
+        [id]="inputSwitch!.option.id"
+        [maxlength]="inputSwitch!.maxlength || 999999999999999"
+        [minlength]="inputSwitch!.minlength || 0"
+        [name]="inputSwitch!.name"
+        [ngClass]="inputSwitch!.ngClass"
+        [ngStyle]="inputSwitch!.ngStyle"
+        [pattern]="inputSwitch!.pattern || ''"
+        [required]="inputSwitch!.required || false"
+        [routerLink]="inputSwitch!.routerLink"
+        [styleClass]="inputSwitch!.styleClass || ''"
+        [style]="inputSwitch!.style"
+        [tabindex]="inputSwitch!.tabindex || 0"
+        [trueValue]="inputSwitch!.trueValue"
+      ></p-inputSwitch>
+    }
+    <!-- Listbox -->
+    @case ('listbox') {
+      <div class="grid">
+        <p-listbox
+          [(ngModel)]="listbox!.ngModel"
+          [checkbox]="listbox!.checkbox || false"
+          [dataKey]="listbox!.dataKey || ''"
+          [disabled]="listbox!.disabled || false"
+          [emptyFilterMessage]="listbox!.emptyFilterMessage || ''"
+          [emptyMessage]="listbox!.emptyMessage || ''"
+          [filterBy]="listbox!.filterBy || ''"
+          [filterLocale]="listbox!.filterLocale || ''"
+          [filterMatchMode]="listbox!.filterMatchMode || 'contains'"
+          [filterPlaceHolder]="listbox!.filterPlaceHolder || ''"
+          [filter]="listbox!.filter || false"
+          [group]="listbox!.group || false"
+          [hidden]="listbox!.hidden"
+          [listStyleClass]="listbox!.listStyleClass || ''"
+          [listStyle]="listbox!.listStyle"
+          [maxlength]="listbox!.maxlength || 999999999999999"
+          [metaKeySelection]="listbox!.metaKeySelection || true"
+          [minlength]="listbox!.minlength || 0"
+          [multiple]="listbox!.multiple || false"
+          [ngClass]="listbox!.ngClass"
+          [ngStyle]="listbox!.ngStyle"
+          [optionGroupChildren]="listbox!.optionGroupChildren || ''"
+          [optionGroupLabel]="listbox!.optionGroupLabel || ''"
+          [options]="listbox!.options"
+          [pattern]="listbox!.pattern || ''"
+          [required]="listbox!.required || false"
+          [routerLink]="listbox!.routerLink"
+          [styleClass]="listbox!.styleClass || ''"
+          [style]="listbox!.style"
+          [tabindex]="listbox!.tabindex"
+        ></p-listbox>
+      </div>
+    }
+    @case ('dropdown') {
+      <p-dropdown
+        [(ngModel)]="dropdown!.ngModel"
+        [appendTo]="dropdown!.appendTo"
+        [autofocusFilter]="dropdown!.autofocusFilter || false"
+        [autofocus]="dropdown!.autofocus || false"
+        [dataKey]="dropdown!.dataKey || ''"
+        [disabled]="dropdown!.disabled || false"
+        [dropdownIcon]="dropdown!.dropdownIcon || 'pi pi-chevron-down'"
+        [emptyFilterMessage]="dropdown!.emptyFilterMessage || ''"
+        [emptyMessage]="dropdown!.emptyMessage || ''"
+        [filterBy]="dropdown!.filterBy || ''"
+        [filterLocale]="dropdown!.filterLocale || ''"
+        [filterMatchMode]="dropdown!.filterMatchMode || 'contains'"
+        [filter]="dropdown!.filter || false"
+        [group]="dropdown!.group"
+        [hidden]="dropdown!.hidden"
+        [hideTransitionOptions]="dropdown!.hideTransitionOptions || '0ms'"
+        [maxlength]="dropdown!.maxlength || 999999999999999"
+        [minlength]="dropdown!.minlength || 0"
+        [ngClass]="dropdown!.ngClass"
+        [ngStyle]="dropdown!.ngStyle"
+        [optionGroupChildren]="dropdown!.optionGroupChildren || ''"
+        [optionGroupLabel]="dropdown!.optionGroupLabel || ''"
+        [options]="dropdown!.options"
+        [pattern]="dropdown!.pattern || ''"
+        [placeholder]="dropdown!.placeholder"
+        [required]="dropdown!.required || false"
+        [routerLink]="dropdown!.routerLink"
+        [styleClass]="dropdown!.styleClass || ''"
+        [style]="dropdown!.style"
+        [tabindex]="dropdown!.tabindex || 0"
+      ></p-dropdown>
+    }
+    @case ('multiselect') {
+      <p-multiSelect
+        [(ngModel)]="multiselect!.ngModel"
+        [appendTo]="multiselect!.appendTo"
+        [autofocusFilter]="multiselect!.autofocusFilter || false"
+        [dataKey]="multiselect!.dataKey || ''"
+        [disabled]="multiselect!.disabled || false"
+        [display]="multiselect!.dynamicDisplay"
+        [dropdownIcon]="multiselect!.dropdownIcon || 'pi pi-chevron-down'"
+        [emptyFilterMessage]="multiselect!.emptyFilterMessage || ''"
+        [emptyMessage]="multiselect!.emptyMessage || ''"
+        [filterBy]="multiselect!.filterBy || ''"
+        [filterLocale]="multiselect!.filterLocale || ''"
+        [filterMatchMode]="multiselect!.filterMatchMode || 'contains'"
+        [filter]="multiselect!.filter || false"
+        [group]="multiselect!.group || false"
+        [hidden]="multiselect!.hidden"
+        [maxlength]="multiselect!.maxlength || 999999999999999"
+        [minlength]="multiselect!.minlength || 0"
+        [ngClass]="multiselect!.ngClass"
+        [ngStyle]="multiselect!.ngStyle"
+        [optionGroupChildren]="multiselect!.optionGroupChildren || ''"
+        [optionGroupLabel]="multiselect!.optionGroupLabel || ''"
+        [optionLabel]="multiselect!.dynamicLabel"
+        [options]="multiselect!.options"
+        [pattern]="multiselect!.pattern || ''"
+        [placeholder]="multiselect!.placeholder"
+        [required]="multiselect!.required || false"
+        [routerLink]="multiselect!.routerLink"
+        [styleClass]="multiselect!.styleClass || ''"
+        [style]="multiselect!.style"
+        [tabindex]="multiselect!.tabindex || 0"
+        >
+        <ng-template let-item pTemplate="item">
+          <div [class]="multiselect!.classTemplate">
+            <img
+              [class]="multiselect!.classImage"
+              [src]="multiselect!.templateImage"
+              [style]="multiselect!.styleImage"
+              alt=""/>
+            <span [class]="multiselect!.classLabel || ''">{{
+              item['dynamicName'] ? item['dynamicName'] : item.label
+            }}</span>
+          </div>
+        </ng-template>
+      </p-multiSelect>
+    }
+    @case ('toggleButton') {
+      <p-toggleButton
+        [(ngModel)]="toggleButton!.ngModel"
+        [disabled]="toggleButton!.disabled || false"
+        [hidden]="toggleButton!.hidden"
+        [maxlength]="toggleButton!.maxlength || 999999999999999"
+        [minlength]="toggleButton!.minlength || 0"
+        [ngClass]="toggleButton!.ngClass"
+        [ngStyle]="toggleButton!.ngStyle"
+        [offLabel]="toggleButton!.dynamicOffLabel"
+        [onLabel]="toggleButton!.dynamicOnLabel"
+        [pattern]="toggleButton!.pattern || ''"
+        [required]="toggleButton!.required || false"
+        [routerLink]="toggleButton!.routerLink"
+        [styleClass]="toggleButton!.styleClass || ''"
+        [style]="toggleButton!.style"
+        [tabindex]="toggleButton!.tabindex || 0"
+      ></p-toggleButton>
+    }
+    @case ('selectOneButton') {
+      <p-selectButton
+        [(ngModel)]="selectOneButton!.ngModel"
+        [dataKey]="selectOneButton!.dataKey || ''"
+        [disabled]="selectOneButton!.disabled || false"
+        [hidden]="selectOneButton!.hidden"
+        [maxlength]="selectOneButton!.maxlength || 999999999999999"
+        [minlength]="selectOneButton!.minlength || 0"
+        [multiple]="selectOneButton!.multiple || false"
+        [ngClass]="selectOneButton!.ngClass"
+        [ngStyle]="selectOneButton!.ngStyle"
+        [optionLabel]="selectOneButton!.optionLabel || ''"
+        [optionValue]="selectOneButton!.optionValue || ''"
+        [options]="selectOneButton!.options"
+        [pattern]="selectOneButton!.pattern || ''"
+        [required]="selectOneButton!.required || false"
+        [routerLink]="selectOneButton!.routerLink"
+        [styleClass]="selectOneButton!.styleClass || ''"
+        [style]="selectOneButton!.style"
+        [tabindex]="selectOneButton!.tabindex || 0"
+      ></p-selectButton>
+    }
+    @case ('inputGroup') {
+      <div class="p-inputgroup">
+        @for (item of inputGroup!.beforeItems; track item) {
+          @if (item.type === 'icon') {
+            <span
+              class="p-inputgroup-addon"
+              >
+              <i [class]="item.icon"></i>
+            </span>
+          }
+          @if (item.type === 'button') {
+            <button
+              [icon]="item.icon || ''"
+              [label]="item.label || ''"
+              pButton
+              pRipple
+              type="button"
+            ></button>
+          }
+        }
+        <input pInputText placeholder="Username" type="text"/>
+        @for (item of inputGroup!.afterItems; track item) {
+          @if (item.type === 'icon') {
+            <span
+              class="p-inputgroup-addon"
+              >
+              <i [class]="item.icon"></i>
+            </span>
+          }
+          @if (item.type === 'button') {
+            <button
+              [icon]="item.icon || ''"
+              [label]="item.label || ''"
+              pButton
+              pRipple
+              type="button"
+            ></button>
+          }
+        }
+      </div>
+    }
+    <!-- Default case -->
+    @default {
+      Tipo de componente inválido
+    }
+  }
 </div>

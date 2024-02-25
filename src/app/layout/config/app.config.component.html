@@ -1,67 +1,69 @@
 <button (click)="onConfigButtonClick()" class="layout-config-button p-link" type="button">
-    <i class="pi pi-cog"></i>
+  <i class="pi pi-cog"></i>
 </button>
 
 <p-sidebar [(visible)]="visible" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'" position="right"
-           styleClass="layout-config-sidebar w-20rem">
-    <h5>Tamanho texto</h5>
-    <div class="flex align-items-center">
-        <button (click)="decrementScale()" [disabled]="scale === scales[0]" class="p-button-text p-button-rounded w-2rem h-2rem mr-2" icon="pi pi-minus"
-                pButton type="button"></button>
-        <div class="flex gap-2 align-items-center">
-            <i *ngFor="let s of scales" [ngClass]="{'text-primary-500': s === scale}"
-               class="pi pi-circle-fill text-300"></i>
-        </div>
-        <button (click)="incrementScale()" [disabled]="scale === scales[scales.length - 1]" class="p-button-text p-button-rounded w-2rem h-2rem ml-2" icon="pi pi-plus"
-                pButton
-                type="button"></button>
+  styleClass="layout-config-sidebar w-20rem">
+  <h5>Tamanho texto</h5>
+  <div class="flex align-items-center">
+    <button (click)="decrementScale()" [disabled]="scale === scales[0]" class="p-button-text p-button-rounded w-2rem h-2rem mr-2" icon="pi pi-minus"
+    pButton type="button"></button>
+    <div class="flex gap-2 align-items-center">
+      @for (s of scales; track s) {
+        <i [ngClass]="{'text-primary-500': s === scale}"
+        class="pi pi-circle-fill text-300"></i>
+      }
     </div>
+    <button (click)="incrementScale()" [disabled]="scale === scales[scales.length - 1]" class="p-button-text p-button-rounded w-2rem h-2rem ml-2" icon="pi pi-plus"
+      pButton
+    type="button"></button>
+  </div>
 
-    <h5>Temas - Cores</h5>
-    <div class="grid">
-        <div class="col-3">
-            <button (click)="changeTheme('lara-light-indigo', 'light')" class="p-link w-2rem h-2rem">
-                <img alt="Lara Light Indigo" class="w-2rem h-2rem"
-                     src="assets/layout/images/themes/lara-light-indigo.png">
-            </button>
+  <h5>Temas - Cores</h5>
+  <div class="grid">
+    <div class="col-3">
+      <button (click)="changeTheme('lara-light-indigo', 'light')" class="p-link w-2rem h-2rem">
+        <img alt="Lara Light Indigo" class="w-2rem h-2rem"
+          src="assets/layout/images/themes/lara-light-indigo.png">
+        </button>
+      </div>
+      <div class="col-3">
+        <button (click)="changeTheme('lara-light-blue', 'light')" class="p-link w-2rem h-2rem">
+          <img alt="Lara Light Blue" class="w-2rem h-2rem" src="assets/layout/images/themes/lara-light-blue.png">
+        </button>
+      </div>
+      <div class="col-3">
+        <button (click)="changeTheme('lara-light-purple', 'light')" class="p-link w-2rem h-2rem">
+          <img alt="Lara Light Purple" class="w-2rem h-2rem"
+            src="assets/layout/images/themes/lara-light-purple.png">
+          </button>
         </div>
         <div class="col-3">
-            <button (click)="changeTheme('lara-light-blue', 'light')" class="p-link w-2rem h-2rem">
-                <img alt="Lara Light Blue" class="w-2rem h-2rem" src="assets/layout/images/themes/lara-light-blue.png">
-            </button>
+          <button (click)="changeTheme('lara-light-teal', 'light')" class="p-link w-2rem h-2rem">
+            <img alt="Lara Light Teal" class="w-2rem h-2rem" src="assets/layout/images/themes/lara-light-teal.png">
+          </button>
         </div>
         <div class="col-3">
-            <button (click)="changeTheme('lara-light-purple', 'light')" class="p-link w-2rem h-2rem">
-                <img alt="Lara Light Purple" class="w-2rem h-2rem"
-                     src="assets/layout/images/themes/lara-light-purple.png">
+          <button (click)="changeTheme('lara-dark-indigo', 'dark')" class="p-link w-2rem h-2rem">
+            <img alt="Lara Dark Indigo" class="w-2rem h-2rem"
+              src="assets/layout/images/themes/lara-dark-indigo.png">
             </button>
-        </div>
-        <div class="col-3">
-            <button (click)="changeTheme('lara-light-teal', 'light')" class="p-link w-2rem h-2rem">
-                <img alt="Lara Light Teal" class="w-2rem h-2rem" src="assets/layout/images/themes/lara-light-teal.png">
-            </button>
-        </div>
-        <div class="col-3">
-            <button (click)="changeTheme('lara-dark-indigo', 'dark')" class="p-link w-2rem h-2rem">
-                <img alt="Lara Dark Indigo" class="w-2rem h-2rem"
-                     src="assets/layout/images/themes/lara-dark-indigo.png">
-            </button>
-        </div>
-        <div class="col-3">
+          </div>
+          <div class="col-3">
             <button (click)="changeTheme('lara-dark-blue', 'dark')" class="p-link w-2rem h-2rem">
-                <img alt="Lara Dark Blue" class="w-2rem h-2rem" src="assets/layout/images/themes/lara-dark-blue.png">
+              <img alt="Lara Dark Blue" class="w-2rem h-2rem" src="assets/layout/images/themes/lara-dark-blue.png">
             </button>
-        </div>
-        <div class="col-3">
+          </div>
+          <div class="col-3">
             <button (click)="changeTheme('lara-dark-purple', 'dark')" class="p-link w-2rem h-2rem">
-                <img alt="Lara Dark Purple" class="w-2rem h-2rem"
-                     src="assets/layout/images/themes/lara-dark-purple.png">
-            </button>
-        </div>
-        <div class="col-3">
-            <button (click)="changeTheme('lara-dark-teal', 'dark')" class="p-link w-2rem h-2rem">
+              <img alt="Lara Dark Purple" class="w-2rem h-2rem"
+                src="assets/layout/images/themes/lara-dark-purple.png">
+              </button>
+            </div>
+            <div class="col-3">
+              <button (click)="changeTheme('lara-dark-teal', 'dark')" class="p-link w-2rem h-2rem">
                 <img alt="Lara Dark Teal" class="w-2rem h-2rem" src="assets/layout/images/themes/lara-dark-teal.png">
-            </button>
-        </div>
-    </div>
-</p-sidebar>
+              </button>
+            </div>
+          </div>
+        </p-sidebar>

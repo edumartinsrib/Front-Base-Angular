@@ -1,44 +1,49 @@
 <div class="grid">
-    <!-- Botões do tipo p-button -->
-    <ng-container *ngFor="let button of buttons">
-        <div *ngIf="!button.model">
-            <p-button
-                [class]="button.class"
-                [disabled]="button.disabled!"
-                [iconPos]="button.iconPos ? button.iconPos : 'left'"
-                [icon]="button.icon ? button.icon : ''"
-                [label]="button.label!"
-                [loadingIcon]="button.loadingIcon ? button.loadingIcon : ''"
-                [loading]="button.loading ? button.loading : false"
-                [styleClass]="button.styleClass ? button.styleClass : ''"
-                [type]="button.type!"
-                pButton
-                pRipple
-            >
-                <img
-                    *ngIf="button.image"
-                    [src]="button.image"
-                    style="width: 1.5rem"
-                />
-            </p-button>
-        </div>
-
-        <!-- Botões do tipo p-splitButton -->
-        <div *ngIf="button.model">
-            <p-splitButton
-                [icon]="button.icon ? button.icon : ''"
-                [label]="button.label ? button.label : ''"
-                [model]="button.model"
-                [styleClass]="button.styleClass ? button.styleClass : ''"
-                pButton
-                pRipple
-            >
-                <img
-                    *ngIf="button.image"
-                    [src]="button.image"
-                    style="width: 1.5rem"
-                />
-            </p-splitButton>
-        </div>
-    </ng-container>
+  <!-- Botões do tipo p-button -->
+  @for (button of buttons; track button) {
+    @if (!button.model) {
+      <div>
+        <p-button
+          [class]="button.class"
+          [disabled]="button.disabled!"
+          [iconPos]="button.iconPos ? button.iconPos : 'left'"
+          [icon]="button.icon ? button.icon : ''"
+          [label]="button.label!"
+          [loadingIcon]="button.loadingIcon ? button.loadingIcon : ''"
+          [loading]="button.loading ? button.loading : false"
+          [styleClass]="button.styleClass ? button.styleClass : ''"
+          [type]="button.type!"
+          pButton
+          pRipple
+          >
+          @if (button.image) {
+            <img
+              [src]="button.image"
+              style="width: 1.5rem"
+              />
+          }
+        </p-button>
+      </div>
+    }
+    <!-- Botões do tipo p-splitButton -->
+    @if (button.model) {
+      <div>
+        <p-splitButton
+          [icon]="button.icon ? button.icon : ''"
+          [label]="button.label ? button.label : ''"
+          [model]="button.model"
+          [styleClass]="button.styleClass ? button.styleClass : ''"
+          pButton
+          pRipple
+          >
+          @if (button.image) {
+            <img
+              [src]="button.image"
+              style="width: 1.5rem"
+              />
+          }
+        </p-splitButton>
+      </div>
+    }
+  }
 </div>

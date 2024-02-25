@@ -1,49 +1,49 @@
 <div class="grid p-fluid">
-    <div class="col-12 lg:col-6">
-        <div class="card">
-            <h5 [style.font-size.rem]="chartTitleSize">{{ chartTitle }}</h5>
-            <ng-container *ngIf="chartType === 'line'">
-                <p-chart
-                    [data]="chartData"
-                    [options]="chartOptions"
-                    type="line"
-                ></p-chart>
-            </ng-container>
-            <ng-container *ngIf="chartType === 'bar'">
-                <p-chart
-                    [data]="chartData"
-                    [options]="chartOptions"
-                    type="bar"
-                ></p-chart>
-            </ng-container>
-            <ng-container *ngIf="chartType === 'pie'">
-                <p-chart
-                    [data]="chartData"
-                    [options]="chartOptions"
-                    type="pie"
-                ></p-chart>
-            </ng-container>
-            <ng-container *ngIf="chartType === 'polarArea'">
-                <p-chart
-                    [data]="chartData"
-                    [options]="chartOptions"
-                    type="polarArea"
-                ></p-chart>
-            </ng-container>
-            <ng-container *ngIf="chartType === 'doughnut'">
-                <p-chart
-                    [data]="chartData"
-                    [options]="chartOptions"
-                    type="doughnut"
-                ></p-chart>
-            </ng-container>
-            <ng-container *ngIf="chartType === 'radar'">
-                <p-chart
-                    [data]="chartData"
-                    [options]="chartOptions"
-                    type="radar"
-                ></p-chart>
-            </ng-container>
-        </div>
+  <div class="col-12 lg:col-6">
+    <div class="card">
+      <h5 [style.font-size.rem]="chartTitleSize">{{ chartTitle }}</h5>
+      @if (chartType === 'line') {
+        <p-chart
+          [data]="chartData"
+          [options]="chartOptions"
+          type="line"
+        ></p-chart>
+      }
+      @if (chartType === 'bar') {
+        <p-chart
+          [data]="chartData"
+          [options]="chartOptions"
+          type="bar"
+        ></p-chart>
+      }
+      @if (chartType === 'pie') {
+        <p-chart
+          [data]="chartData"
+          [options]="chartOptions"
+          type="pie"
+        ></p-chart>
+      }
+      @if (chartType === 'polarArea') {
+        <p-chart
+          [data]="chartData"
+          [options]="chartOptions"
+          type="polarArea"
+        ></p-chart>
+      }
+      @if (chartType === 'doughnut') {
+        <p-chart
+          [data]="chartData"
+          [options]="chartOptions"
+          type="doughnut"
+        ></p-chart>
+      }
+      @if (chartType === 'radar') {
+        <p-chart
+          [data]="chartData"
+          [options]="chartOptions"
+          type="radar"
+        ></p-chart>
+      }
     </div>
+  </div>
 </div>
